@@ -10,8 +10,8 @@
 ### Queues
 - First In First Out
 - Operations of Queue:
-   1. Enqueue: Add item to the end of queue. 
-   2. Dequeue: Take item out from the start of queue.
+   1. Enqueue / Push: Add item to the end of queue. 
+   2. Dequeue / Pop: Take item out from the start of queue.
  
 
 
