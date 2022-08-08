@@ -10,7 +10,7 @@ Involve 3 hash tables:
 3. Parents: To store the parent of each node
 '''
 
-# nodes in graph: starting node, node A and node B
+# nodes in graph: starting node, node A, node B and finish node
 
 # making Graph hash table
 # graph = { "start": {"a": 6, "b": 2} }
