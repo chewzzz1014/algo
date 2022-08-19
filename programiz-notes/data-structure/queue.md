@@ -28,6 +28,7 @@
 
 ## Limitations
 - After a bit of enqueuing and dequeuing, the size of the queue has been reduced.
+- Result in non-usable empty space
 - we can only add indexes 0 and 1 only when the queue is reset (when all the elements have been dequeued).
 ## Time Complexity
 - Enqueue and dequeue using array: `O(1)`
