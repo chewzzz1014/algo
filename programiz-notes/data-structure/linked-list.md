@@ -43,4 +43,16 @@ three->next = NULL;
 head = one; 
 ```
 
+## Complexity
+|Operation|Worst Case | Average Case|
+|---|---|---|
+|Search|O(n)|O(n)|
+|Insert|O(1)|O(1)|
+|Deletion|O(1)|O(1)|
+
+## Application
+- Dynamic memory allocation
+- Implemented in stack and queue
+- Undo functionality of softwares
+- Hash tables and graphs
 
