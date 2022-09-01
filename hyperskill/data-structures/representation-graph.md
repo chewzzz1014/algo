@@ -15,10 +15,13 @@ Before considering specific techniques to represent graphs, it is essential to u
 
 ![image](https://user-images.githubusercontent.com/92832451/187855609-9276615e-a8ad-4049-927d-cd69b782557f.png)
 
+![image](https://user-images.githubusercontent.com/92832451/187857225-212c53c5-9a3f-412e-85c7-5b46290fe975.png)
+
+
 
 ## Adjacency matrix
 
-The first way of representation is known as the adjacency matrix. This is a matrix where each entry indicates whether a particular edge exists in the graph. The value 111 in a cell shows that the edge exists, while 000 means there's no such edge. Here is the adjacency matrix for the graph above:
+The first way of representation is known as the adjacency matrix. This is a matrix where each entry indicates whether a particular edge exists in the graph. The value 1 in a cell shows that the edge exists, while 0 means there's no such edge. Here is the adjacency matrix for the graph above:
 
 
 ![image](https://user-images.githubusercontent.com/92832451/187855681-6d19eb90-64e3-4d74-b563-f949a7c9dcd9.png)
