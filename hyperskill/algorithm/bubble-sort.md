@@ -3,7 +3,7 @@ Bubble sort is one of the simplest sorting algorithms. It repeatedly goes throug
 
 The wrong and correct orders depend on the required sorting order. If we need to sort the array in ascending order, the wrong order is when the previous element is greater than the next one. If we need to sort the array in descending order, the wrong order is the case when the previous element is smaller than the next one.
 
-This algorithm is not suitable for large arrays, since its average and worst-case time complexity is O(n2)Ο(n^2)O(n2), where n is the array length.
+This algorithm is not suitable for large arrays, since its average and worst-case time complexity is O(n<sup>2</sup>), where n is the array length.
 
 The algorithm is stable: it doesn't change the relative order of identical elements.
 
