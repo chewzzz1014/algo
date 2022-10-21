@@ -27,6 +27,6 @@ public class TestArrayStack {
 		System.out.println("crates.pop(): " + crates.pop());
 		System.out.println("crates.pop(): " + crates.pop());
 		System.out.println("crates.pop(): " + crates.pop());
-		//System.out.println("crates.pop(): " + crates.pop());
+		System.out.println("crates.pop(): " + crates.pop());	// Exception!
 	}
 }
