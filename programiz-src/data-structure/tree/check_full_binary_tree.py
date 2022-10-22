@@ -1,4 +1,4 @@
-# check whether a binary tree is a full binary tree
+# check whether a binary tree is a full binary tree (every node has 0 or 2 childs)
 
 class Node:
     def __init__(self, item):
