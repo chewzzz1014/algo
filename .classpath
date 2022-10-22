@@ -6,6 +6,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="java_dataStructure"/>
-	<classpathentry kind="src" path="Coursera_Algo"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
