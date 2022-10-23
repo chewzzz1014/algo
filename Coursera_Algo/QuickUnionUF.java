@@ -18,7 +18,7 @@ public class QuickUnionUF {
 	// chase parent pointers until each root
 	private int root(int i) {
 		while (i != id[i])
-			i = id[i];
+			i = id[i];	// move up to its parent
 		return i;
 	}
 	
