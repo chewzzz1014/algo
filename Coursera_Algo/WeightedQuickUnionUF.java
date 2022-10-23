@@ -3,6 +3,7 @@
 public class WeightedQuickUnionUF {
 	
 	private int[] id;
+	// size of tree
 	private int[] sz;
 	
 	// set id of each object to itself
@@ -34,11 +35,11 @@ public class WeightedQuickUnionUF {
 			return;
 		if (sz[i]<sz[j]) {
 			id[i] = j;
-			sz[j] += sz[i];
+			sz[j] += sz[i]; // increase size of tree
 		}
 		else {
 			id[j] = i;
-			sz[i] += sz[j];
+			sz[i] += sz[j];  // increase size of tree
 		}
 	}
 }
