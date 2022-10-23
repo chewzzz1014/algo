@@ -20,6 +20,8 @@ class QuickFindUF {
 			return id[p] == id[q];
 		}
 		
+		
+		// merge components containing p and q
 		// change all entries with id[p] to id[q] (at most 2n+2 array accesses)
 		public void union(int p, int q) {
 			int pid = id[p];
