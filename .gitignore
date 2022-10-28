@@ -6,7 +6,7 @@ bin/
 =======
 .idea/
 .settings/
-.classpath/
-.project/
+.classpath
+.project
 
 >>>>>>> 33143934375a99b2d48442bbbada4c36979a4e81
