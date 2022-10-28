@@ -6,14 +6,14 @@ import java.util.Arrays;
 // implement Stack using Array
 // inherit weakly from Stack interface
 
-public class ArrayStack implements Stack {
+public class ArrayStack<T> {
 
-	private ArrayList<Object> a;
+	private ArrayList<T> a;
 	private int size;
 
 	// constructor. Define maximum capacity of stack
 	public ArrayStack(){
-		a = new ArrayList<Object>();
+		a = new ArrayList<T>();
 	}
 	
 	public boolean isEmpty() {
@@ -21,21 +21,21 @@ public class ArrayStack implements Stack {
 	}
 	
 	// push if does not exist maximum capacity. Else, resize the stack
-	public void push(Object o) {
+	public void push(T o) {
 		a.add(size++, o);
 	}
 	
 	// pop if stack has at least one element. Else, throw exception
-	public Object pop() {
+	public T pop() {
 		if (size == 0)
 			throw new IllegalStateException("Stack is empty");
-		Object o = a.get(--size); 
+		T o = a.get(--size); 
 		a.remove(size);
 		return o;
 	}
 	
 	// throw exception if there's no element on stack
-	public Object peek() {
+	public T peek() {
 		if (size==0)
 			throw new IllegalStateException("stack is empty");
 		return a.get(size-1); 
@@ -48,4 +48,5 @@ public class ArrayStack implements Stack {
 	public String toString() {
 		return Arrays.toString(a.toArray());
 	}
+	
 }

@@ -2,7 +2,7 @@ package stack;
 
 public class TestArrayStack {
 	public static void main (String[]args) {
-		Stack crates = new ArrayStack(4);
+		ArrayStack<String> crates = new ArrayStack<String>();
 		
 		crates.push("CARROTS");
 		crates.push("ORANGES");
