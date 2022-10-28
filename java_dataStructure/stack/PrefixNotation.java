@@ -25,7 +25,7 @@ public class PrefixNotation {
 				while(! a.peek().equals(")") ) {
 					String operand = a.pop();
 					b.add(Double.parseDouble(operand));
-					System.out.println("b");
+					System.out.println("Inside operands ArrayList:");
 					System.out.println(b.toString());
 				}
 				// closing parenthesis
@@ -33,7 +33,7 @@ public class PrefixNotation {
 				
 				a = performOperation(a, operator, b);
 				b.clear();
-				System.out.println("a");
+				System.out.println("Inside stack:");
 				System.out.println(a.toString());
 			}
 		}
