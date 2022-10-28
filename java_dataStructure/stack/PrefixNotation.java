@@ -18,11 +18,11 @@ public class PrefixNotation {
 				System.out.println(a.toString());
 			}
 			else if ( c== '(') {
-				System.out.println("It's a ( !!!!");
-				a.push(c);
+				a.pop();
 				System.out.println(a.toString());
 			}
 		}
 		System.out.println(expression);
+		sc.close();
 	}	
 }

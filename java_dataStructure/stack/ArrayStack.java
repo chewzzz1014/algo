@@ -30,7 +30,7 @@ public class ArrayStack implements Stack {
 		if (size == 0)
 			throw new IllegalStateException("Stack is empty");
 		Object o = a.get(--size); 
-		a.set(size, null);
+		a.remove(size);
 		return o;
 	}
 	
