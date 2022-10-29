@@ -1,25 +1,23 @@
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
-// implement Stack using Array
-// inherit weakly from Stack interface
-
+// implement Stack using generic ArrayList
 public class ArrayStack<T> {
 
 	private ArrayList<T> a;
 	private int size;
 
-	// constructor. Define maximum capacity of stack
+	// constructor to make a generic ArrayList
 	public ArrayStack(){
 		a = new ArrayList<T>();
 	}
 	
+	// check if the stack is empty
 	public boolean isEmpty() {
 		return size == 0;
 	}
 	
-	// push if does not exist maximum capacity. Else, resize the stack
+	// push element into the stack
 	public void push(T o) {
 		a.add(size++, o);
 	}
@@ -33,6 +31,7 @@ public class ArrayStack<T> {
 		return o;
 	}
 	
+	// return the top element on stack
 	// throw exception if there's no element on stack
 	public T peek() {
 		if (size==0)
@@ -40,10 +39,12 @@ public class ArrayStack<T> {
 		return a.get(size-1); 
 	}
 	
+	// get the size of stack
 	public int size() {
 		return size;
 	}
 	
+	// print all the elements in the stack
 	public String toString() {
 		return Arrays.toString(a.toArray());
 	}
