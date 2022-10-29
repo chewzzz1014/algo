@@ -6,7 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="Stack"/>
-	<classpathentry kind="src" path="Course_Algo"/>
+	<classpathentry kind="src" path="Java_Stack"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
