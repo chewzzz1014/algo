@@ -1,4 +1,4 @@
-package stack;
+
 
 public class TestArrayStack {
 	public static void main (String[]args) {
