@@ -5,5 +5,5 @@ Learning Resources:
 - [Intro to Computer Algorithms and Data Structures ](https://hyperskill.org/tracks/41) Course by Hyperskill
   - Note: This course did not include implementation of data structure and algorithm.
   
-- [Algorithm Part I](https://www.coursera.org/learn/algorithms-part1) on Coursera
+- [Problem Solving with Algorithms and Data Structures using Python](https://runestone.academy/ns/books/published/pythonds/index.html)
 
