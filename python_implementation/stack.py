@@ -26,6 +26,17 @@ class Stack:
         # x = [str(x) for x in self.stack]
         return ", ".join([str(x) for x in self.stack])
 
+# use stack to reverse string
+def revstring(myStr):
+    s = Stack()
+    rS = []
+    for x in myStr:
+        s.push(x)
+    while not s.isEmpty():
+        rS.append(s.pop())
+    return "".join(rS)
+
+
 
 s = Stack()
 
@@ -41,3 +52,4 @@ print(s.pop())
 print(s.pop())
 print(s.size())
 print(s)
+print(revstring("hello world"))
