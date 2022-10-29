@@ -1,8 +1,8 @@
+// interface for stack
 
-
-public interface Stack {
-	public Object peek();
-	public Object pop();
-	public void push(Object o);
+public interface Stack <T> {
+	public T peek();
+	public T pop();
+	public void push(T o);
 	public int size();
 }
