@@ -23,7 +23,7 @@ class Dequeue:
         return len(self.dequeue)
 
 if __name__ == '__main__':
-    d = Deque()
+    d = Dequeue()
     print(d.isEmpty())
     d.addRear(4)
     d.addRear('dog')
