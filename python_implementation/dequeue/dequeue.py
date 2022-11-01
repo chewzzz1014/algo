@@ -1,6 +1,6 @@
 # rear at front of list; front at the end of list
 
-class Deque:
+class Dequeue:
     def __init__(self):
         self.dequeue = []
 
