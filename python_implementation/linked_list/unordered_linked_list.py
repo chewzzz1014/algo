@@ -1,23 +1,6 @@
 # implementation of linked list in python
 # each item (also known as node) in the list hold data and reference to next node
-
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
-
-    def getData(self):
-        return self.data
-
-    def getNext(self):
-        return self.next
-
-    def setData(self, data):
-        self.data = data
-
-    def setNext(self, next):
-        self.next = next
-
+from Node import Node
 
 # linked list must maintain a reference to the first node
 # list itself does not contain any node object, but it only contains a single reference to first node
