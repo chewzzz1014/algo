@@ -121,17 +121,17 @@ public class LinkedList <T> {
 	}
 	
 	public String toString() {
-		StringBuffer result = new StringBuffer("[");
+		StringBuffer result = new StringBuffer("");
 		Node<T> current = first;
+		
+		if(size==0)
+			return "[ ]";
 		
 		for(int i=0; i<size; i++) {
 			result.append(current.data);
 			current = current.link;
 			
-			if (current != null)
-				result.append(", ");
-			else
-				result.append("]");
+			result.append("\n\n");
 		}
 		return result.toString();
 	}

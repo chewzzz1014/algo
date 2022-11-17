@@ -9,7 +9,7 @@
 import java.util.Scanner;
 
 public class Menu {
-	public int option, seatNum;
+	public int option, flightNum, seatNum;
 	public String name, id;
 	public double price;
 	Scanner sc = new Scanner (System.in);
@@ -33,6 +33,9 @@ public class Menu {
 		System.out.println("Enter Passenger ID: ");
 		id = sc.nextLine();
 		
+		System.out.println("Enter Flight Number: ");
+		flightNum = sc.nextInt();
+		
 		System.out.println("Enter Seat Number (0-39): ");
 		seatNum = sc.nextInt();
 		
@@ -40,17 +43,16 @@ public class Menu {
 	}
 	
 	public void cancelMenu() {
-		// get seat num
-		// delete node
 		System.out.println("-------------------Canceling reservation------------------");
+		System.out.println("Enter Flight Number: ");
+		flightNum = sc.nextInt();
+		
 		System.out.println("Enter Seat Number (0-39): ");
 		seatNum = sc.nextInt();
 		System.out.println("Reservation cancelled!");
 	}
 	
 	public void checkAvailibilityMenu() {
-		// get seat num
-		// delete node
 		System.out.println("-------------------Checking Ticket Availibility------------------");
 		System.out.println("Enter Seat Number (0-39): ");
 		seatNum = sc.nextInt();
@@ -58,8 +60,8 @@ public class Menu {
 		System.out.println("finding...");
 	}
 	
-	public void checkPassengerMenu(Passenger p) {
+	public void checkPassengerMenu() {
 		System.out.println("-------------------Passenger info------------------");
-		System.out.println(p.toString());
+		System.out.println();
 	}
 }
