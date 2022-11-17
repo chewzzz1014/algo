@@ -28,7 +28,7 @@ public class LinkedList <T> {
 			return null;
 		else {
 			Node<T> current = first;
-			for(int i=0; i<idx; i++) 
+			for(int i=0; i<idx-1; i++) 
 				current = current.link;
 			return current.data;
 			

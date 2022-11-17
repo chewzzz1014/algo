@@ -9,24 +9,40 @@ public class TicketReservation {
 		
 		LinkedList<Flight> allFlights = new LinkedList<>();
 		
-		
-//		allFlights.addFirst(new Flight(1));
-//		
-//		allFlights.getFirst().passengers.addFirst(new Passenger("chewzzz", "212360", 0));
-//		allFlights.getFirst().passengers.addFirst(new Passenger("chew", "211111", 1));
-//		
-//		System.out.println(allFlights.getFirst().toString());
-		
 		while(toCont) {
+			m.mainMenu();
 			
+			switch(m.option) {
+				case "1":
+					m.reserveMenu();
+					
+					allFlights.addLast(new Flight(m.flightNum));
+					allFlights.getData(m.flightNum).passengers.add(m.seatNum, new Passenger(m.name, m.id, m.seatNum));
+					//System.out.println(allFlights.getFirst().toString());
+					break;
+				case "2":
+					m.cancelMenu();
+					
+					// flightNum, seatNum
+					
+					break;
+				case "3":
+					m.checkAvailibilityMenu();
+					break;
+				case "4":
+					m.checkPassengerMenu();
+					
+					System.out.println(allFlights.toString());
+					break;	
+			}
 			toCont = continueTransaction(sc);
+			System.out.println();
 		}
 		
 	}	
 	
 	public static boolean continueTransaction(Scanner sc) {
 		String getToCont;
-		
 		System.out.println("Do you wish to continue? (y/n)");
 		getToCont = sc.nextLine();
 		if (getToCont.toLowerCase().charAt(0) == 'n')

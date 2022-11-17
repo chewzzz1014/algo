@@ -9,8 +9,8 @@
 import java.util.Scanner;
 
 public class Menu {
-	public int option, flightNum, seatNum;
-	public String name, id;
+	public int flightNum, seatNum;
+	public String name, id, option;
 	public double price;
 	Scanner sc = new Scanner (System.in);
 	
@@ -20,7 +20,8 @@ public class Menu {
 		System.out.println("3. Check Seat Availability");
 		System.out.println("4. Check Seat Passengers");
 		
-		option = sc.nextInt();
+		System.out.println("What would you like to do?");
+		option = sc.nextLine();
 	}
 	
 	public void reserveMenu() {
@@ -34,34 +35,35 @@ public class Menu {
 		id = sc.nextLine();
 		
 		System.out.println("Enter Flight Number: ");
-		flightNum = sc.nextInt();
+		flightNum = Integer.valueOf(sc.nextLine());
 		
 		System.out.println("Enter Seat Number (0-39): ");
-		seatNum = sc.nextInt();
+		seatNum = Integer.valueOf(sc.nextLine());
 		
 		System.out.println("Reservation completed!");
+		System.out.println("-----------------------------------------------------");
 	}
 	
 	public void cancelMenu() {
 		System.out.println("-------------------Canceling reservation------------------");
 		System.out.println("Enter Flight Number: ");
-		flightNum = sc.nextInt();
+		flightNum = Integer.valueOf(sc.nextLine());
 		
 		System.out.println("Enter Seat Number (0-39): ");
-		seatNum = sc.nextInt();
+		seatNum = Integer.valueOf(sc.nextLine());
 		System.out.println("Reservation cancelled!");
+		System.out.println("-----------------------------------------------------");
 	}
 	
 	public void checkAvailibilityMenu() {
 		System.out.println("-------------------Checking Ticket Availibility------------------");
 		System.out.println("Enter Seat Number (0-39): ");
-		seatNum = sc.nextInt();
+		seatNum = Integer.valueOf(sc.nextLine());
 		
 		System.out.println("finding...");
 	}
 	
 	public void checkPassengerMenu() {
 		System.out.println("-------------------Passenger info------------------");
-		System.out.println();
 	}
 }
