@@ -77,10 +77,10 @@ public class LinkedList <T> {
 			return null;
 		else {
 			Node<T> temp = last;
-			Node<T> previous = first;
+			Node<T> current = first;
 			for (int i=0; i<size-1; i++)
-				previous = previous.link;
-			previous.link = null;
+				current = current.link;
+			current.link = null;
 			size --;
 			return temp.data;
 		}
@@ -103,6 +103,22 @@ public class LinkedList <T> {
 			size --;
 			return current.data;
 		}
+	}
+	
+	public String toString() {
+		StringBuffer result = new StringBuffer("[");
+		Node<T> current = first;
+		
+		for(int i=0; i<size; i++) {
+			result.append(current.data);
+			current = current.link;
+			
+			if (current != null)
+				result.append(", ");
+			else
+				result.append("]");
+		}
+		return result.toString();
 	}
 	
 }
