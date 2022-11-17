@@ -1,11 +1,11 @@
 // Chew Zi Qing
 // 212360
 
-public class Node {
-	Object data;
-	Node link;
+public class Node <T> {
+	T data;
+	Node<T> link;
 	
-	public Node(Object o) {
+	public Node(T o) {
 		data = o;
 	}
 }

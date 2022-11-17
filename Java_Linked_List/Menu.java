@@ -6,7 +6,7 @@
 //-	Cancel a reservation
 //-	Check whether a ticket is reserves for a particular person
 //-	Display the passengers
-
+import java.util.Scanner;
 
 public class Menu {
 	public void mainMenu() {
@@ -17,10 +17,15 @@ public class Menu {
 	}
 	
 	public void reserveMenu() {
-		
+		// get passenger name 
+		// display price and success message(seat number)
+		System.out.println("-------------------Reserving ticket------------------");
+		System.out.println("Enter passenger name: ");
 	}
 	
 	public void cancelMenu() {
+		// get seat num
+		// delete node
 		
 	}
 	
