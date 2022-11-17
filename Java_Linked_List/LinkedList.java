@@ -23,6 +23,18 @@ public class LinkedList <T> {
 			return last.data;
 	}
 	
+	public T getData(int idx) {
+		if (size == 0)
+			return null;
+		else {
+			Node<T> current = first;
+			for(int i=0; i<idx; i++) 
+				current = current.link;
+			return current.data;
+			
+		}
+	}
+	
 	public void addFirst(T o) {
 		Node<T> newNode = new Node<T>(o);
 		newNode.link = first;
@@ -77,10 +89,12 @@ public class LinkedList <T> {
 			return null;
 		else {
 			Node<T> temp = last;
-			Node<T> current = first;
-			for (int i=0; i<size-1; i++)
-				current = current.link;
-			current.link = null;
+			Node<T> previous = first;
+			
+			for (int i=0; i<size-2; i++) {
+				previous = previous.link;
+			}
+			previous.link = null;
 			size --;
 			return temp.data;
 		}
