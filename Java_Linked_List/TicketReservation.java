@@ -1,8 +1,10 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class TicketReservation {
 	public static void main(String[]args) {
 		Scanner sc = new Scanner(System.in);
+		ArrayList<Integer> flightsRecorded = new ArrayList<>();
 		Menu m = new Menu();
 		boolean toCont = true;
 		
@@ -10,25 +12,63 @@ public class TicketReservation {
 		LinkedList<Flight> allFlights = new LinkedList<>();
 		
 		while(toCont) {
+			m.flightNum = -1;
+			m.seatNum = -1;
+			
 			m.mainMenu();
 			
 			switch(m.option) {
 				case "1":
 					m.reserveMenu();
 					
-					allFlights.addLast(new Flight(m.flightNum));
-					allFlights.getData(m.flightNum).passengers.add(m.seatNum, new Passenger(m.name, m.id, m.seatNum));
-					//System.out.println(allFlights.getFirst().toString());
+					if (flightsRecorded.indexOf(m.flightNum) == -1) {
+						flightsRecorded.add(m.flightNum);
+						allFlights.addLast(new Flight(m.flightNum));
+					}
+					allFlights.getData(allFlights.indexOf("flight", m.flightNum)).passengers.addLast(new Passenger(m.name, m.id, m.seatNum));
+					System.out.println(allFlights.toString());
 					break;
+					
 				case "2":
 					m.cancelMenu();
 					
-					// flightNum, seatNum
-					
+					int flightIdx = allFlights.indexOf("flight", m.flightNum);
+					if (flightIdx != -1) {
+						Flight f = allFlights.getData(flightIdx);
+						int pIdx = f.passengers.indexOf("passenger", m.seatNum);
+						Passenger p = f.passengers.remove(pIdx);
+						if (pIdx != -1) {
+							//System.out.println(p + " found!");
+							System.out.println("Reservation cancelled!");
+						}else {
+							System.out.println("Unreserved Seat!");
+						}		
+						
+					}else {
+						System.out.println("Invalid Flight Number!");
+					}
 					break;
+					
 				case "3":
 					m.checkAvailibilityMenu();
+					
+					flightIdx = allFlights.indexOf("flight", m.flightNum);
+					if (flightIdx != -1) {
+						Flight f = allFlights.getData(flightIdx);
+						int pIdx = f.passengers.indexOf("passenger", m.seatNum);
+						Passenger p = f.passengers.getData(pIdx);
+						if (pIdx == -1) {
+							//System.out.println(p + " found!");
+							System.out.println("Reservation available!");
+						}else {
+							System.out.println(p);
+						}		
+						
+					}else {
+						System.out.println("Invalid Flight Number!");
+					}
 					break;
+					
 				case "4":
 					m.checkPassengerMenu();
 					

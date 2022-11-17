@@ -51,12 +51,14 @@ public class Menu {
 		
 		System.out.println("Enter Seat Number (0-39): ");
 		seatNum = Integer.valueOf(sc.nextLine());
-		System.out.println("Reservation cancelled!");
 		System.out.println("-----------------------------------------------------");
 	}
 	
 	public void checkAvailibilityMenu() {
 		System.out.println("-------------------Checking Ticket Availibility------------------");
+		System.out.println("Enter Flight Number: ");
+		flightNum = Integer.valueOf(sc.nextLine());
+		
 		System.out.println("Enter Seat Number (0-39): ");
 		seatNum = Integer.valueOf(sc.nextLine());
 		

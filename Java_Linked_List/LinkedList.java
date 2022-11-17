@@ -3,7 +3,7 @@
 
 public class LinkedList <T> {
 	Node<T> first, last;
-	int size;
+	int size = 0;
 	
 	public LinkedList() {
 		
@@ -28,10 +28,12 @@ public class LinkedList <T> {
 			return null;
 		else {
 			Node<T> current = first;
-			for(int i=0; i<idx-1; i++) 
-				current = current.link;
-			return current.data;
 			
+			for(int i=0; i<idx; i++) {
+				if (current.link != null)
+					current = current.link;
+			}
+			return current.data;
 		}
 	}
 	
@@ -135,5 +137,30 @@ public class LinkedList <T> {
 		}
 		return result.toString();
 	}
+	
+	public int indexOf(String target, int n) {
+		Node<T> current = first;
+		int index = 0;
+		
+		if (target.equals("flight")) {
+			while(current != null) {
+				Flight f = (Flight)current.data;
+				if ( f.flightNum == n)
+					return index;
+				current = current.link;
+				index ++;
+			}
+		}else {
+			while(current != null) {
+				Passenger p = (Passenger)current.data;
+				if ( p.seatNum == n)
+					return index;
+				current = current.link;
+				index ++;
+			}
+		}
+		return -1;
+	}
+	
 	
 }

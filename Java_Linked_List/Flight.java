@@ -1,6 +1,6 @@
 
 public class Flight {
-	public int flightNum, seatNum;
+	public int flightNum;
 	public LinkedList<Passenger> passengers;
 	
 	public Flight(int n) {
@@ -15,4 +15,5 @@ public class Flight {
 		
 		return info;
 	}
+	
 }
