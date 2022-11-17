@@ -15,7 +15,7 @@ public class Flight {
 		String info = "";
 		info += "Flight Number: " + flightNum + "\n\n";
 		info += passengers.toString();
-		info += "****************";
+		info += "\n****************";
 		
 		return info;
 	}
