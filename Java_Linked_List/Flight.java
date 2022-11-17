@@ -1,4 +1,7 @@
+// Chew Zi Qing
+// 212360
 
+// flights that has flight number and a linked list of passengers
 public class Flight {
 	public int flightNum;
 	public LinkedList<Passenger> passengers;

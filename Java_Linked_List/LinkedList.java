@@ -1,6 +1,9 @@
 // Chew Zi Qing
 // 212360
 
+// generic linked list
+// methods: getData, addFirst, addLast, add, removeFirst,
+// removeLast, remove, toString, indexOf
 public class LinkedList <T> {
 	Node<T> first, last;
 	int size = 0;
@@ -9,20 +12,7 @@ public class LinkedList <T> {
 		
 	}
 	
-	public T getFirst(){
-		if(size==0)
-			return null;
-		else
-			return first.data;
-	}
-	
-	public T getLast() {
-		if(size==0)
-			return null;
-		else
-			return last.data;
-	}
-	
+	// get node data at a specific index
 	public T getData(int idx) {
 		if (size == 0)
 			return null;
@@ -37,6 +27,7 @@ public class LinkedList <T> {
 		}
 	}
 	
+	// add node to the front of list
 	public void addFirst(T o) {
 		Node<T> newNode = new Node<T>(o);
 		newNode.link = first;
@@ -47,6 +38,7 @@ public class LinkedList <T> {
 			last = first;
 	}
 	
+	// add node to the back of list
 	public void addLast(T o) {
 		if (last == null)
 			first = last = new Node<T>(o);
@@ -57,6 +49,7 @@ public class LinkedList <T> {
 		size++;
 	}
 	
+	// add node at specific index
 	public void add(int idx, T o) {
 		if (idx == 0)
 			addFirst(o);
@@ -73,6 +66,7 @@ public class LinkedList <T> {
 		}
 	}
 	
+	// remove first node
 	public T removeFirst() {
 		if (size == 0)
 			return null;
@@ -86,6 +80,7 @@ public class LinkedList <T> {
 		}
 	}
 	
+	// remove last node
 	public T removeLast() {
 		if (size == 0)
 			return null;
@@ -103,6 +98,7 @@ public class LinkedList <T> {
 		}
 	}
 	
+	// remove node at a specific index
 	public T remove(int idx) {
 		if ((idx<0)||(idx>=size))
 			return null;
@@ -122,6 +118,7 @@ public class LinkedList <T> {
 		}
 	}
 	
+	// convert the contents of linked list to string
 	public String toString() {
 		StringBuffer result = new StringBuffer("");
 		Node<T> current = first;
@@ -138,6 +135,7 @@ public class LinkedList <T> {
 		return result.toString();
 	}
 	
+	// find the index of a node with given flightNum/seatNum
 	public int indexOf(String target, int n) {
 		Node<T> current = first;
 		int index = 0;

@@ -1,19 +1,15 @@
 // Chew Zi Qing
 // 212360
-
-//Write a simple airline ticket reservation program using linked list. The program should display a menu with the following options:
-//-	Reserve a ticket
-//-	Cancel a reservation
-//-	Check whether a ticket is reserves for a particular person
-//-	Display the passengers
 import java.util.Scanner;
 
+// for displaying menu and asking for input
 public class Menu {
 	public int flightNum, seatNum;
 	public String name, id, option;
 	public double price;
 	Scanner sc = new Scanner (System.in);
 	
+	// display main menu and ask for next step
 	public void mainMenu() {
 		System.out.println("1. Reserve a Ticket");
 		System.out.println("2. Cancel a Reservation");
@@ -24,9 +20,8 @@ public class Menu {
 		option = sc.nextLine();
 	}
 	
+	// display reservation menu and ask for passenger name, id and flight number and seat number
 	public void reserveMenu() {
-		// get passenger name, id
-		// display price and success message(seat number)
 		System.out.println("-------------------Reserving ticket------------------");
 		System.out.println("Enter Passenger Name: ");
 		name = sc.nextLine();
@@ -44,6 +39,7 @@ public class Menu {
 		System.out.println("-----------------------------------------------------");
 	}
 	
+	// display cancellation menu and ask for flight number and seat number
 	public void cancelMenu() {
 		System.out.println("-------------------Canceling reservation------------------");
 		System.out.println("Enter Flight Number: ");
@@ -51,8 +47,11 @@ public class Menu {
 		
 		System.out.println("Enter Seat Number (0-39): ");
 		seatNum = Integer.valueOf(sc.nextLine());
+	
 	}
 	
+	// display menu for checking whether a ticket is reserves for a particular person 
+	// ask for flight number and seat number
 	public void checkAvailibilityMenu() {
 		System.out.println("-------------------Checking Ticket Availibility------------------");
 		System.out.println("Enter Flight Number: ");
@@ -64,6 +63,7 @@ public class Menu {
 		System.out.println("\nfinding...");
 	}
 	
+	// display all passengers for all flights
 	public void checkPassengerMenu() {
 		System.out.println("-------------------Passenger info------------------");
 	}
