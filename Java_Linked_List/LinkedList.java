@@ -95,6 +95,7 @@ public class LinkedList <T> {
 				previous = previous.link;
 			}
 			previous.link = null;
+			last = previous;
 			size --;
 			return temp.data;
 		}

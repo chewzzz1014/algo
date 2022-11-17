@@ -9,27 +9,57 @@
 import java.util.Scanner;
 
 public class Menu {
+	public int option, seatNum;
+	public String name, id;
+	public double price;
+	Scanner sc = new Scanner (System.in);
+	
 	public void mainMenu() {
-		System.out.println("1. Reserve a ticket");
-		System.out.println("2. Cancel a reservation");
-		System.out.println("3. Check whether a ticket is reserves for a particular person");
-		System.out.println("4. Display the passengers");
+		System.out.println("1. Reserve a Ticket");
+		System.out.println("2. Cancel a Reservation");
+		System.out.println("3. Check Seat Availability");
+		System.out.println("4. Check Seat Passengers");
+		
+		option = sc.nextInt();
 	}
 	
 	public void reserveMenu() {
-		// get passenger name 
+		// get passenger name, id
 		// display price and success message(seat number)
 		System.out.println("-------------------Reserving ticket------------------");
-		System.out.println("Enter passenger name: ");
+		System.out.println("Enter Passenger Name: ");
+		name = sc.nextLine();
+		
+		System.out.println("Enter Passenger ID: ");
+		id = sc.nextLine();
+		
+		System.out.println("Enter Seat Number (0-39): ");
+		seatNum = sc.nextInt();
+		
+		System.out.println("Reservation completed!");
 	}
 	
 	public void cancelMenu() {
 		// get seat num
 		// delete node
-		
+		System.out.println("-------------------Canceling reservation------------------");
+		System.out.println("Enter Seat Number (0-39): ");
+		seatNum = sc.nextInt();
+		System.out.println("Reservation cancelled!");
 	}
 	
-	public void passengerMenu() {
+	public void checkAvailibilityMenu() {
+		// get seat num
+		// delete node
+		System.out.println("-------------------Checking Ticket Availibility------------------");
+		System.out.println("Enter Seat Number (0-39): ");
+		seatNum = sc.nextInt();
 		
+		System.out.println("finding...");
+	}
+	
+	public void checkPassengerMenu(Passenger p) {
+		System.out.println("-------------------Passenger info------------------");
+		System.out.println(p.toString());
 	}
 }
