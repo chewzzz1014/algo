@@ -51,7 +51,6 @@ public class Menu {
 		
 		System.out.println("Enter Seat Number (0-39): ");
 		seatNum = Integer.valueOf(sc.nextLine());
-		System.out.println("-----------------------------------------------------");
 	}
 	
 	public void checkAvailibilityMenu() {
@@ -62,7 +61,7 @@ public class Menu {
 		System.out.println("Enter Seat Number (0-39): ");
 		seatNum = Integer.valueOf(sc.nextLine());
 		
-		System.out.println("finding...");
+		System.out.println("\nfinding...");
 	}
 	
 	public void checkPassengerMenu() {

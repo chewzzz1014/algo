@@ -1,3 +1,5 @@
+// Chew Zi Qing
+// 212360
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -26,7 +28,7 @@ public class TicketReservation {
 						allFlights.addLast(new Flight(m.flightNum));
 					}
 					allFlights.getData(allFlights.indexOf("flight", m.flightNum)).passengers.addLast(new Passenger(m.name, m.id, m.seatNum));
-					System.out.println(allFlights.toString());
+					//System.out.println(allFlights.toString());
 					break;
 					
 				case "2":
@@ -47,6 +49,7 @@ public class TicketReservation {
 					}else {
 						System.out.println("Invalid Flight Number!");
 					}
+					System.out.println("-----------------------------------------------------");
 					break;
 					
 				case "3":
@@ -61,18 +64,21 @@ public class TicketReservation {
 							//System.out.println(p + " found!");
 							System.out.println("Reservation available!");
 						}else {
-							System.out.println(p);
+							System.out.println("Passenger who had reserved flight " + m.flightNum + " seat "+m.seatNum + ": ");
+							System.out.println (p);
 						}		
 						
 					}else {
 						System.out.println("Invalid Flight Number!");
 					}
+					System.out.println("-----------------------------------------------------");
 					break;
 					
 				case "4":
 					m.checkPassengerMenu();
 					
 					System.out.println(allFlights.toString());
+					System.out.println("-----------------------------------------------------");
 					break;	
 			}
 			toCont = continueTransaction(sc);
