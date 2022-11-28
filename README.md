@@ -1,3 +1,4 @@
+Learning algorithm implementation in Python and Java. Also contains assignments and exercises I've done during my CS degree.
 
 Learning Resources: 
 - Grokking Algorithms: An Illustrated Guide for Programmers and Other Curious People by Aditya Bhargava
