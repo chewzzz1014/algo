@@ -20,7 +20,7 @@ public class RoundRobin {
 		timeQuantum = sc.nextInt();
 		
 		Queue processQueue = formProcessQueue(numProcess, allBurstTime, timeQuantum);
-		System.out.println("\nProcess\tArrival\tBurst\tComplete\tTurnaround\tWaiting");
+		System.out.println("\nProcess\t  Exec. slices (t) \tComplete\tTurnaround\tWaiting");
 		System.out.println(processQueue.toString());
 	}
 	
@@ -29,7 +29,7 @@ public class RoundRobin {
 		Queue q = new Queue(numProcess);
 		
 		for (int i=0; i<numProcess; i++) {
-			q.enqueue(new Process(allCode.charAt(i)+"",0, allBurstTime[i]));
+			q.enqueue(new RoundRobinProcess(allCode.charAt(i)+"",0, allBurstTime[i]));
 		}
 		return q;
 	}
