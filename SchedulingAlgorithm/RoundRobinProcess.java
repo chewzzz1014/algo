@@ -3,12 +3,11 @@ import java.util.ArrayList;
 public class RoundRobinProcess extends Process{
 	
 	public ArrayList<Integer> slices = new ArrayList<Integer>();
+	int fixedBurst;
 	
 	public RoundRobinProcess(String code, int arrivalTime, int burstTime){
 		super(code, arrivalTime, burstTime);
-		slices.add(1);
-		slices.add(2);
-		slices.add(3);
+		fixedBurst = burstTime;
 	}
 	
 	@Override
@@ -21,8 +20,8 @@ public class RoundRobinProcess extends Process{
 		}
 		
 		
-		return String.format("%-9s %-21s %-15s %-15s %-15s\n",
-				code, slicesStr, completeTime+"", turnAroundTime+"", waitTime+"");
+		return String.format("%-9s %-21s %-15s %-15s %-7s %-5s\n",
+				code, slicesStr, completeTime+"", turnAroundTime+"", waitTime+"", fixedBurst);
 	}
 	
 }
