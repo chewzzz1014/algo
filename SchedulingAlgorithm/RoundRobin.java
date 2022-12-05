@@ -54,7 +54,7 @@ public class RoundRobin {
 		}
 		
 		
-		System.out.println("\nProcess\t  Exec. slices (t) \tComplete\tTurnaround\tWaiting\t\tBurst");
+		System.out.println("\nProcess\tArrival\tBurst\t Exec. slices (t) \tComplete\tTurnaround\tWaiting");
 		System.out.println(allProcess.toString());
 		System.out.printf("Average Waiting Time for %1d Processes: %.2f units\n", numProcess, ((double)totalWait/numProcess));
 		System.out.printf("Average Turn Around Time for %1d Processes: %.2f units\n", numProcess, ((double)totalTA/numProcess));

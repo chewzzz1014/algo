@@ -27,7 +27,7 @@ public class AdvancedRoundRobin {
 		for (int i=0; i<numProcess; i++) {
 			burstTime = sc.nextInt();
 			allBurstTime[i] = burstTime;
-			AdvancedRoundRobinProcess r = new AdvancedRoundRobinProcess(allCode.charAt(i)+"",allArrivalTime[i], allBurstTime[i]);
+			RoundRobinProcess r = new RoundRobinProcess(allCode.charAt(i)+"",allArrivalTime[i], allBurstTime[i]);
 			
 			allProcess.enqueue(r);
 			pendingProcess.enqueue(r);
@@ -37,7 +37,7 @@ public class AdvancedRoundRobin {
 		timeQuantum = sc.nextInt();	
 		
 		while(pendingProcess.size() > 0) {
-			AdvancedRoundRobinProcess r = (AdvancedRoundRobinProcess) pendingProcess.dequeue();
+			RoundRobinProcess r = (RoundRobinProcess) pendingProcess.dequeue();
 			
 			if (r.burstTime>timeQuantum) {
 				r.slices.add(currentTime);
