@@ -20,7 +20,7 @@ public class RoundRobinProcess extends Process{
 		}
 		
 		
-		return String.format("%-9s %-21s %-15s %-15s %-7s %-5s\n",
+		return String.format("%-9s %-21s %-15s %-15s %-15s %-5s\n",
 				code, slicesStr, completeTime+"", turnAroundTime+"", waitTime+"", fixedBurst);
 	}
 	
