@@ -44,4 +44,20 @@ public class Queue {
 			backIdx = oldQ.length - 1;
 		}
 	}
+	
+	public String toString() {
+		String output = "";
+		for (int i=0; i<size; i++) {
+			output += objQ[i].toString() + " ";
+		}
+		return output;
+	}
+	
+	public int size() {
+		return size;
+	}
+	
+	public Object getItem(int idx) {
+		return objQ[idx];
+	}
 }
