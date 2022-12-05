@@ -6,7 +6,7 @@ public class AdvancedRoundRobin {
 		Scanner sc = new Scanner(System.in);
 		String allCode = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		int numProcess, burstTime, timeQuantum, 
-			currentTime = 0, totalTA=0, totalWait = 0;
+			currentTime = 0, totalTA=0, totalWait = 0, currentInsertion=0;
 		int[]allBurstTime, allArrivalTime;
 		Queue allProcess;
 		Queue pendingProcess = new Queue(25);
@@ -30,32 +30,50 @@ public class AdvancedRoundRobin {
 			RoundRobinProcess r = new RoundRobinProcess(allCode.charAt(i)+"",allArrivalTime[i], allBurstTime[i]);
 			
 			allProcess.enqueue(r);
-			pendingProcess.enqueue(r);
+			//pendingProcess.enqueue(r);
 		}
 		
 		System.out.print("\nQ: ");
 		timeQuantum = sc.nextInt();	
 		
-		while(pendingProcess.size() > 0) {
-			RoundRobinProcess r = (RoundRobinProcess) pendingProcess.dequeue();
+//		while(pendingProcess.size() > 0) {
+//			RoundRobinProcess r = (RoundRobinProcess) pendingProcess.dequeue();
+//			
+//			if (r.burstTime>timeQuantum) {
+//				r.slices.add(currentTime);
+//				r.burstTime -= timeQuantum;
+//				currentTime += timeQuantum;
+//				
+//				pendingProcess.enqueue(r);
+//			}else {
+//				r.slices.add(currentTime);
+//				currentTime += r.burstTime;
+//				r.burstTime = 0;
+//				
+//				r.completeTime = currentTime;
+//				r.turnAroundTime = r.completeTime - r.arrivalTime;
+//				r.waitTime = r.turnAroundTime - r.fixedBurst;
+//				
+//				totalTA += r.turnAroundTime;
+//				totalWait += r.waitTime;
+//			}
+//		}
+		
+		while (currentInsertion<numProcess || pendingProcess.size()>0) {
+			RoundRobinProcess r = (RoundRobinProcess) allProcess.getItem(currentInsertion);
 			
-			if (r.burstTime>timeQuantum) {
-				r.slices.add(currentTime);
-				r.burstTime -= timeQuantum;
-				currentTime += timeQuantum;
+			if (currentTime >= r.arrivalTime) {
 				
-				pendingProcess.enqueue(r);
-			}else {
-				r.slices.add(currentTime);
 				currentTime += r.burstTime;
-				r.burstTime = 0;
+				r.burstTime -= timeQuantum;
 				
-				r.completeTime = currentTime;
-				r.turnAroundTime = r.completeTime - r.arrivalTime;
-				r.waitTime = r.turnAroundTime - r.fixedBurst;
+				RoundRobinProcess next = (RoundRobinProcess) allProcess.getItem(currentInsertion+1);
 				
-				totalTA += r.turnAroundTime;
-				totalWait += r.waitTime;
+				if (r.burstTime>0)
+					pendingProcess.enqueue(r);
+					
+			}else {
+				currentTime++;
 			}
 		}
 		
