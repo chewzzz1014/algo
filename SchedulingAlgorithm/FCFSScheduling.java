@@ -28,7 +28,7 @@ public class FCFSScheduling {
 			System.out.print(currentProcess.toString());;
 		}
 		
-		System.out.println(FCFCQueue.toString());
+		System.out.println();
 		System.out.printf("Average Turn Around Time: %.2f units\n", ((double)totalTurnAroundTime/numProcess));
 		System.out.printf("Average Waiting Time: %.2f units\n", ((double)totalWaitTime/numProcess));
 	}
