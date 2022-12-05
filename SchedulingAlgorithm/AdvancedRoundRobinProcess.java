@@ -8,6 +8,9 @@ public class AdvancedRoundRobinProcess extends Process{
 	public AdvancedRoundRobinProcess(String code, int arrivalTime, int burstTime){
 		super(code, arrivalTime, burstTime);
 		fixedBurst = burstTime;
+		slices.add(1);
+		slices.add(2);
+		slices.add(3);
 	}
 	
 	@Override
@@ -19,9 +22,9 @@ public class AdvancedRoundRobinProcess extends Process{
 				{slicesStr += ", ";}
 		}
 		
-		
-		return String.format("%-9s %-21s %-15s %-15s %-15s %-5s\n",
-				code, slicesStr, completeTime+"", turnAroundTime+"", waitTime+"", fixedBurst);
+//		\nProcess\tArrival\tBurst\t Exec. slices (t) \tComplete\tTurnaround\tWaiting
+		return String.format("%-7s %-8s %-7s %-22s %-15s %-15s %-15s\n",
+				code, arrivalTime+"", fixedBurst+"" ,slicesStr, completeTime+"", turnAroundTime+"", waitTime+"");
 	}
 	
 }

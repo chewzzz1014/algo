@@ -7,7 +7,7 @@ public class AdvancedRoundRobin {
 		String allCode = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		int numProcess, burstTime, timeQuantum, 
 			currentTime = 0, totalTA=0, totalWait = 0;
-		int[]allBurstTime;
+		int[]allBurstTime, allArrivalTime;
 		Queue allProcess;
 		Queue pendingProcess = new Queue(25);
 		
@@ -16,12 +16,18 @@ public class AdvancedRoundRobin {
 		numProcess = sc.nextInt();
 		allProcess = new Queue(numProcess);
 		
+		System.out.print("\nArrival time: ");
+		allArrivalTime = new int[numProcess];
+		for (int i=0; i<numProcess; i++) {
+			allArrivalTime[i] = sc.nextInt();
+		}
+		
 		System.out.print("\nBurst time: ");
 		allBurstTime = new int[numProcess];
 		for (int i=0; i<numProcess; i++) {
 			burstTime = sc.nextInt();
 			allBurstTime[i] = burstTime;
-			RoundRobinProcess r = new RoundRobinProcess(allCode.charAt(i)+"",0, allBurstTime[i]);
+			AdvancedRoundRobinProcess r = new AdvancedRoundRobinProcess(allCode.charAt(i)+"",allArrivalTime[i], allBurstTime[i]);
 			
 			allProcess.enqueue(r);
 			pendingProcess.enqueue(r);
@@ -31,7 +37,7 @@ public class AdvancedRoundRobin {
 		timeQuantum = sc.nextInt();	
 		
 		while(pendingProcess.size() > 0) {
-			RoundRobinProcess r = (RoundRobinProcess) pendingProcess.dequeue();
+			AdvancedRoundRobinProcess r = (AdvancedRoundRobinProcess) pendingProcess.dequeue();
 			
 			if (r.burstTime>timeQuantum) {
 				r.slices.add(currentTime);
@@ -54,7 +60,7 @@ public class AdvancedRoundRobin {
 		}
 		
 		
-		System.out.println("\nProcess\t  Exec. slices (t) \tComplete\tTurnaround\tWaiting\t\tBurst");
+		System.out.println("\nProcess\tArrival\tBurst\t Exec. slices (t) \tComplete\tTurnaround\tWaiting");
 		System.out.println(allProcess.toString());
 		System.out.printf("Average Waiting Time for %1d Processes: %.2f units\n", numProcess, ((double)totalWait/numProcess));
 		System.out.printf("Average Turn Around Time for %1d Processes: %.2f units\n", numProcess, ((double)totalTA/numProcess));
