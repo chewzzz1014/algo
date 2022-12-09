@@ -1,7 +1,9 @@
+// Chew Zi Qing 212360
 import java.util.ArrayList;
 
+// inherit from Process class
 public class RoundRobinProcess extends Process{
-	
+	// to store all start time of a process
 	public ArrayList<Integer> slices = new ArrayList<Integer>();
 	int fixedBurst;
 	
@@ -20,7 +22,8 @@ public class RoundRobinProcess extends Process{
 		}
 		
 		return String.format("%-7s %-8s %-7s %-22s %-15s %-15s %-15s\n",
-				code, arrivalTime+"", fixedBurst+"" ,slicesStr, completeTime+"", turnAroundTime+"", waitTime+"");
+				code, arrivalTime+"", fixedBurst+"" ,slicesStr, completeTime+"", 
+				turnAroundTime+"", waitTime+"");
 	}
 	
 }
