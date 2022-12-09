@@ -54,7 +54,7 @@ public class Queue {
 	// print all items inside the queue
 	public String toString() {
 		String output = "";
-		for (int i=frontIdx; i<=backIdx; i++) {
+		for (int i=0; i<size; i++) {
 			output += objQ[i].toString();
 		}
 		return output;
