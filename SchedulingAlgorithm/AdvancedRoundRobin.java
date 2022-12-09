@@ -107,12 +107,8 @@ public class AdvancedRoundRobin {
 			System.out.println(pendingProcess.toString());
 			currentIdx++;
 			if (currentIdx == 1) {
-				pendingProcess.dequeue();
-				currentProcess = (RoundRobinProcess)pendingProcess.dequeue();
-			}
-			else if (currentIdx>0) {
-				currentProcess = (RoundRobinProcess)pendingProcess.dequeue();
-			}
+				{pendingProcess.dequeue();}
+			currentProcess = (RoundRobinProcess)pendingProcess.dequeue();
 		}
 		
 		
