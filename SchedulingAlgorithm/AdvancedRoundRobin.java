@@ -33,8 +33,7 @@ public class AdvancedRoundRobin {
 			
 			allProcess.enqueue(r);
 			map.put(r.arrivalTime, r);
-			
-			//pendingProcess.enqueue(r);
+
 		}
 		
 		System.out.print("\nQ: ");
@@ -104,10 +103,10 @@ public class AdvancedRoundRobin {
 				pendingProcess.enqueue(currentProcess);
 			}
 			
-			System.out.println(pendingProcess.toString());
 			currentIdx++;
 			if (currentIdx == 1) {
-				{pendingProcess.dequeue();}
+				pendingProcess.dequeue();
+			}
 			currentProcess = (RoundRobinProcess)pendingProcess.dequeue();
 		}
 		
@@ -119,6 +118,7 @@ public class AdvancedRoundRobin {
 		System.out.println();
 		System.out.printf("Average Waiting Time for %1d Processes: %.2f units\n", numProcess, ((double)totalWait/numProcess));
 		System.out.printf("Average Turn Around Time for %1d Processes: %.2f units\n", numProcess, ((double)totalTA/numProcess));
+		sc.close();
 	}
 	
 }
