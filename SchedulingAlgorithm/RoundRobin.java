@@ -58,6 +58,7 @@ public class RoundRobin {
 				totalTA += r.turnAroundTime;
 				totalWait += r.waitTime;
 			}
+			sc.close();
 		}
 		
 		
