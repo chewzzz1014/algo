@@ -63,11 +63,13 @@ public class AdvancedRoundRobin {
 		
 		int numProcessFromCurrent = 1, count=0;
 		
+		// repeat till the queue is empty
 		while (pendingProcess.size()>0) {
 			
 			if (count>0)
 				currentProcess = (RoundRobinProcess)pendingProcess.dequeue();
 			
+			// if process burst time > time quantum
 			if (currentProcess.burstTime > timeQuantum) {
 				for (int i=0; i<timeQuantum; i++) 
 					ganttChart += currentProcess.code;
@@ -76,6 +78,7 @@ public class AdvancedRoundRobin {
 				currentTime += timeQuantum;
 				currentProcess.burstTime -= timeQuantum;
 				
+				// check whether there's any process arrives after the current process completed
 				while(true) {
 					int temp = currentIdx+numProcessFromCurrent;
 					if (temp<numProcess && sortedAllArrivalTime[temp]<=currentTime) {
@@ -88,9 +91,11 @@ public class AdvancedRoundRobin {
 				}	
 				pendingProcess.enqueue(currentProcess);
 			}else{
+				// if process burst time <= time quantum
 				for (int i=0; i<currentProcess.burstTime; i++) 
 					ganttChart += currentProcess.code;
 				
+				// process is completed. Calculate its statistics
 				currentProcess.slices.add(currentTime);
 				currentTime += currentProcess.burstTime;
 				currentProcess.burstTime = 0;
@@ -101,6 +106,7 @@ public class AdvancedRoundRobin {
 				totalTA += currentProcess.turnAroundTime;
 				totalWait += currentProcess.waitTime;
 				
+				// check whether there's any process arrives after the current process completed
 				while(true) {
 					int temp = currentIdx+numProcessFromCurrent;
 					if (temp<numProcess && sortedAllArrivalTime[temp]<=currentTime) {
