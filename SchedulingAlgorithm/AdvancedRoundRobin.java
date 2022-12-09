@@ -67,14 +67,13 @@ public class AdvancedRoundRobin {
 		
 		while (pendingProcess.size()>0) {
 			
-			System.out.println("***************************");
 			if (count>0)
 				currentProcess = (RoundRobinProcess)pendingProcess.dequeue();
-			System.out.println("Current Process: "+currentProcess.code);
-			System.out.println("Current Idx: "+currentIdx);
-			System.out.println("Current Time: "+currentTime);
 			
 			if (currentProcess.burstTime > timeQuantum) {
+				for (int i=0; i<timeQuantum; i++) 
+					ganttChart += currentProcess.code;
+				
 				currentProcess.slices.add(currentTime);
 				currentTime += timeQuantum;
 				currentProcess.burstTime -= timeQuantum;
@@ -84,7 +83,6 @@ public class AdvancedRoundRobin {
 					if (temp<numProcess && sortedAllArrivalTime[temp]<=currentTime) {
 						RoundRobinProcess r = (RoundRobinProcess) treeMap.get(sortedAllArrivalTime[temp]);
 						pendingProcess.enqueue(r);
-						System.out.println("Added: "+r.code);
 						currentIdx++;
 					}else {
 						break;
@@ -92,6 +90,9 @@ public class AdvancedRoundRobin {
 				}	
 				pendingProcess.enqueue(currentProcess);
 			}else{
+				for (int i=0; i<currentProcess.burstTime; i++) 
+					ganttChart += currentProcess.code;
+				
 				currentProcess.slices.add(currentTime);
 				currentTime += currentProcess.burstTime;
 				currentProcess.burstTime = 0;
@@ -107,7 +108,6 @@ public class AdvancedRoundRobin {
 					if (temp<numProcess && sortedAllArrivalTime[temp]<=currentTime) {
 						RoundRobinProcess r = (RoundRobinProcess) treeMap.get(sortedAllArrivalTime[temp]);
 						pendingProcess.enqueue(r);
-						System.out.println("Added: "+r.code);
 						currentIdx++;
 					}else {
 						break;
@@ -119,7 +119,6 @@ public class AdvancedRoundRobin {
 				pendingProcess.dequeue();
 			
 			count++;
-			System.out.println(pendingProcess.toString());
 		}
 			
 			//if (currentIdx == 1)
