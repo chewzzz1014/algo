@@ -61,22 +61,40 @@ public class AdvancedRoundRobin {
 		currentTime = currentProcess.arrivalTime;
 		int currentIdx = 0;
 		
-		boolean hasNextProcess;
-		int numProcessFromCurrent;
-		// repeat till queue is empty and all processes are completed
-		while(pendingProcess.size() > 0 || currentIdx<numProcess) {
-			hasNextProcess = true;
-			numProcessFromCurrent = 1;
+		int numProcessFromCurrent = 1, count=0;
+		
+		System.out.println(pendingProcess.toString());
+		
+		while (pendingProcess.size()>0) {
 			
-			// process's burst time < time quantum
-			if (currentProcess.burstTime <= timeQuantum) {
-				for (int i=0; i<currentProcess.burstTime; i++) 
-					ganttChart += currentProcess.code;
+			System.out.println("***************************");
+			if (count>0)
+				currentProcess = (RoundRobinProcess)pendingProcess.dequeue();
+			System.out.println("Current Process: "+currentProcess.code);
+			System.out.println("Current Idx: "+currentIdx);
+			System.out.println("Current Time: "+currentTime);
+			
+			if (currentProcess.burstTime > timeQuantum) {
+				currentProcess.slices.add(currentTime);
+				currentTime += timeQuantum;
+				currentProcess.burstTime -= timeQuantum;
 				
+				while(true) {
+					int temp = currentIdx+numProcessFromCurrent;
+					if (temp<numProcess && sortedAllArrivalTime[temp]<=currentTime) {
+						RoundRobinProcess r = (RoundRobinProcess) treeMap.get(sortedAllArrivalTime[temp]);
+						pendingProcess.enqueue(r);
+						System.out.println("Added: "+r.code);
+						currentIdx++;
+					}else {
+						break;
+					}
+				}	
+				pendingProcess.enqueue(currentProcess);
+			}else{
 				currentProcess.slices.add(currentTime);
 				currentTime += currentProcess.burstTime;
 				currentProcess.burstTime = 0;
-				
 				currentProcess.completeTime = currentTime;
 				currentProcess.turnAroundTime = currentProcess.completeTime - currentProcess.arrivalTime;
 				currentProcess.waitTime = currentProcess.turnAroundTime - currentProcess.fixedBurst;
@@ -84,47 +102,125 @@ public class AdvancedRoundRobin {
 				totalTA += currentProcess.turnAroundTime;
 				totalWait += currentProcess.waitTime;
 				
-				// check for any process arrive after current process was completed
-				// add them to queue
-				while(hasNextProcess) {
-					if (((currentIdx+numProcessFromCurrent)<sortedAllArrivalTime.length) &&sortedAllArrivalTime[currentIdx+numProcessFromCurrent]<= currentTime) {
-						pendingProcess.enqueue(treeMap.get(sortedAllArrivalTime[currentIdx+numProcessFromCurrent]));
-						numProcessFromCurrent++;
+				while(true) {
+					int temp = currentIdx+numProcessFromCurrent;
+					if (temp<numProcess && sortedAllArrivalTime[temp]<=currentTime) {
+						RoundRobinProcess r = (RoundRobinProcess) treeMap.get(sortedAllArrivalTime[temp]);
+						pendingProcess.enqueue(r);
+						System.out.println("Added: "+r.code);
+						currentIdx++;
+					}else {
+						break;
 					}
-					else
-						{hasNextProcess = false;}			
 				}
-			}else {
-				
-				for (int i=0; i<timeQuantum; i++) 
-					ganttChart += currentProcess.code;
-				
-				currentProcess.slices.add(currentTime);
-				currentProcess.burstTime -= timeQuantum;
-				currentTime += timeQuantum;
-				
-				// check for any process arrive after current process was completed
-				// add them to queue
-				while(hasNextProcess) {
-					if (((currentIdx+numProcessFromCurrent)<sortedAllArrivalTime.length) &&sortedAllArrivalTime[currentIdx+numProcessFromCurrent]<= currentTime) {
-						pendingProcess.enqueue(treeMap.get(sortedAllArrivalTime[currentIdx+numProcessFromCurrent]));
-						numProcessFromCurrent++;
-					}
-					else
-						{hasNextProcess = false;}
-				}
-				
-				// current process has remaining burst time
-				// add the current process to the end of queue
-				pendingProcess.enqueue(currentProcess);
 			}
 			
-			currentIdx++;
-			if (currentIdx == 1) {
+			if (count == 0)
 				pendingProcess.dequeue();
-			}
-			currentProcess = (RoundRobinProcess)pendingProcess.dequeue();
+			
+			count++;
+			System.out.println(pendingProcess.toString());
 		}
+			
+			//if (currentIdx == 1)
+			//	pendingProcess.dequeue();
+			
+			//currentIdx++;
+//		boolean hasNextProcess;
+//		int numProcessFromCurrent;
+//		// repeat till queue is empty and all processes are completed
+//		while(pendingProcess.size() > 0 || currentIdx<numProcess) {
+//			hasNextProcess = true;
+//			numProcessFromCurrent = 1;
+//			System.out.println("****"+currentTime+"****");
+//			// process's burst time < time quantum
+//			if (currentProcess.burstTime <= timeQuantum) {
+//				System.out.println(0);
+//				for (int i=0; i<currentProcess.burstTime; i++) 
+//					ganttChart += currentProcess.code;
+//				
+//				currentProcess.slices.add(currentTime);
+//				currentTime += currentProcess.burstTime;
+//				currentProcess.burstTime = 0;
+//				
+//				currentProcess.completeTime = currentTime;
+//				currentProcess.turnAroundTime = currentProcess.completeTime - currentProcess.arrivalTime;
+//				currentProcess.waitTime = currentProcess.turnAroundTime - currentProcess.fixedBurst;
+//				
+//				totalTA += currentProcess.turnAroundTime;
+//				totalWait += currentProcess.waitTime;
+//				System.out.println("---"+currentTime+"---");
+//				// check for any process arrive after current process was completed
+//				// add them to queue
+//				while(hasNextProcess) {
+//					if (((currentIdx+numProcessFromCurrent)<numProcess) &&sortedAllArrivalTime[currentIdx+numProcessFromCurrent]<= currentTime) {
+//						System.out.println(1);
+//						RoundRobinProcess r = treeMap.get(sortedAllArrivalTime[currentIdx+numProcessFromCurrent]);
+//						pendingProcess.enqueue(r);
+//						System.out.println("current idx: "+currentIdx);
+//						System.out.println("added "+r.code+" at "+"idx "+(currentIdx+numProcessFromCurrent));
+//						System.out.println("hahahaha: "+r.code);
+//						System.out.println("****");
+//						System.out.println(pendingProcess.toString());
+//						//numProcessFromCurrent++;
+//						currentIdx++;
+//						//currentIdx= currentIdx+ numProcessFromCurrent;
+//					}
+//					else
+//						{hasNextProcess = false; System.out.println(2);}			
+//				}
+//			}else {
+//				
+//				for (int i=0; i<timeQuantum; i++) 
+//					ganttChart += currentProcess.code;
+//				
+//				currentProcess.slices.add(currentTime);
+//				currentProcess.burstTime -= timeQuantum;
+//				currentTime += timeQuantum;
+//				
+//				// check for any process arrive after current process was completed
+//				// add them to queue
+//				while(hasNextProcess) {
+//					if (((currentIdx+numProcessFromCurrent)<numProcess) &&sortedAllArrivalTime[currentIdx+numProcessFromCurrent]<= currentTime) {
+//						System.out.println(3);
+//						RoundRobinProcess r = treeMap.get(sortedAllArrivalTime[currentIdx+numProcessFromCurrent]);
+//						pendingProcess.enqueue(r);
+//						System.out.println(pendingProcess);
+//						//numProcessFromCurrent++;
+//						currentIdx++;
+//						//currentIdx= currentIdx+ numProcessFromCurrent;
+//					}
+//					else
+//						{hasNextProcess = false; System.out.println(4);}
+//				}
+//				
+//				// current process has remaining burst time
+//				// add the current process to the end of queue
+//				pendingProcess.enqueue(currentProcess);
+//			}
+//			
+//			//if (s.isEmpty() || s.indexOf(currentProcess.code)==-1){
+//			//	currentIdx++;
+//			//	s.add(currentProcess.code);
+//			//}
+//			
+////			if (currentIdx == 1) {
+////				pendingProcess.dequeue();
+////			}
+//			
+//			if (pendingProcess.size()>0)
+//				currentProcess = (RoundRobinProcess)pendingProcess.dequeue();
+//			System.out.println(pendingProcess.toString());
+//			System.out.println("next: "+currentProcess.code);
+//		}
+		
+		
+		for (int i=0; i<numProcess; i++) {
+			RoundRobinProcess s = (RoundRobinProcess) treeMap.get(sortedAllArrivalTime[i]);
+			System.out.println(sortedAllArrivalTime[i]+": "+s.code);
+		}
+		
+		System.out.println("Current Time: "+currentTime);
 		
 		// output the statistics for each process, Gantt chart, average turn around time and waiting time
 		System.out.println("\nProcess\tArrival\tBurst\t Exec. slices (t) \tComplete\tTurnaround\tWaiting");
