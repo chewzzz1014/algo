@@ -132,8 +132,8 @@ public class AdvancedRoundRobin {
 		System.out.println("Gantt chart (1 char = 1 microsecond): ");
 		System.out.println(ganttChart);
 		System.out.println();
-		System.out.printf("Average Waiting Time for %1d Processes: %.2f units\n", numProcess, ((double)totalWait/numProcess));
-		System.out.printf("Average Turn Around Time for %1d Processes: %.2f units\n", numProcess, ((double)totalTA/numProcess));
+		System.out.printf("Average Waiting Time for %1d Processes: %.2f ms\n", numProcess, ((double)totalWait/numProcess));
+		System.out.printf("Average Turn Around Time for %1d Processes: %.2f ms\n", numProcess, ((double)totalTA/numProcess));
 		sc.close();
 	}
 	
