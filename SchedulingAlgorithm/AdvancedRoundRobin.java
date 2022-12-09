@@ -74,17 +74,14 @@ public class AdvancedRoundRobin {
 				
 				totalTA += currentProcess.turnAroundTime;
 				totalWait += currentProcess.waitTime;
-				System.out.println(1);
 				
 				while(hasNextProcess) {
 					if (((currentIdx+numProcessFromCurrent)<sortedAllArrivalTime.length) &&sortedAllArrivalTime[currentIdx+numProcessFromCurrent]<= currentTime) {
-						System.out.println(2);
 						pendingProcess.enqueue(treeMap.get(sortedAllArrivalTime[currentIdx+numProcessFromCurrent]));
-						System.out.println(pendingProcess.toString());
 						numProcessFromCurrent++;
 					}
 					else
-						{hasNextProcess = false; System.out.println(3);}			
+						{hasNextProcess = false;}			
 				}
 			}else {
 				
@@ -112,17 +109,11 @@ public class AdvancedRoundRobin {
 			if (currentIdx == 1) {
 				pendingProcess.dequeue();
 				currentProcess = (RoundRobinProcess)pendingProcess.dequeue();
-				System.out.println(0+ ": current process is "+currentProcess.code);
 			}
 			else if (currentIdx>0) {
 				currentProcess = (RoundRobinProcess)pendingProcess.dequeue();
-				System.out.println(0+ ": current process is "+currentProcess.code);
 			}
 		}
-		
-//		for (Map.Entry<Integer, RoundRobinProcess> e: treeMap.entrySet()) {
-//			System.out.println(e.getKey());
-//		}
 		
 		
 		System.out.println("\nProcess\tArrival\tBurst\t Exec. slices (t) \tComplete\tTurnaround\tWaiting");
