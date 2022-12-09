@@ -5,6 +5,7 @@ public class RoundRobin {
 	public static void main (String[]args) {
 		Scanner sc = new Scanner(System.in);
 		String allCode = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String ganttChart = "";
 		int numProcess, burstTime, timeQuantum, 
 			currentTime = 0, totalTA=0, totalWait = 0;
 		int[]allBurstTime;
@@ -34,12 +35,18 @@ public class RoundRobin {
 			RoundRobinProcess r = (RoundRobinProcess) pendingProcess.dequeue();
 			
 			if (r.burstTime>timeQuantum) {
+				for (int i=0; i<timeQuantum; i++) 
+					ganttChart += r.code;
+				
 				r.slices.add(currentTime);
 				r.burstTime -= timeQuantum;
 				currentTime += timeQuantum;
 				
 				pendingProcess.enqueue(r);
 			}else {
+				for (int i=0; i<r.burstTime; i++) 
+					ganttChart += r.code;
+				
 				r.slices.add(currentTime);
 				currentTime += r.burstTime;
 				r.burstTime = 0;
@@ -56,6 +63,9 @@ public class RoundRobin {
 		
 		System.out.println("\nProcess\tArrival\tBurst\t Exec. slices (t) \tComplete\tTurnaround\tWaiting");
 		System.out.println(allProcess.toString());
+		System.out.println("Gantt chart (1 char = 1 microsecond): ");
+		System.out.println(ganttChart);
+		System.out.println();
 		System.out.printf("Average Waiting Time for %1d Processes: %.2f units\n", numProcess, ((double)totalWait/numProcess));
 		System.out.printf("Average Turn Around Time for %1d Processes: %.2f units\n", numProcess, ((double)totalTA/numProcess));
 	}

@@ -59,23 +59,23 @@ public class AdvancedRoundRobin {
 //			}
 //		}
 		
-		while (currentInsertion<numProcess || pendingProcess.size()>0) {
-			RoundRobinProcess r = (RoundRobinProcess) allProcess.getItem(currentInsertion);
-			
-			if (currentTime >= r.arrivalTime) {
-				
-				currentTime += r.burstTime;
-				r.burstTime -= timeQuantum;
-				
-				RoundRobinProcess next = (RoundRobinProcess) allProcess.getItem(currentInsertion+1);
-				
-				if (r.burstTime>0)
-					pendingProcess.enqueue(r);
-					
-			}else {
-				currentTime++;
-			}
-		}
+//		while (currentInsertion<numProcess || pendingProcess.size()>0) {
+//			RoundRobinProcess r = (RoundRobinProcess) allProcess.getItem(currentInsertion);
+//			
+//			if (currentTime >= r.arrivalTime) {
+//				
+//				currentTime += r.burstTime;
+//				r.burstTime -= timeQuantum;
+//				
+//				RoundRobinProcess next = (RoundRobinProcess) allProcess.getItem(currentInsertion+1);
+//				
+//				if (r.burstTime>0)
+//					pendingProcess.enqueue(r);
+//					
+//			}else {
+//				currentTime++;
+//			}
+//		}
 		
 		
 		System.out.println("\nProcess\tArrival\tBurst\t Exec. slices (t) \tComplete\tTurnaround\tWaiting");
