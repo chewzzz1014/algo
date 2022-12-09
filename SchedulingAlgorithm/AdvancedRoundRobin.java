@@ -63,8 +63,6 @@ public class AdvancedRoundRobin {
 		
 		int numProcessFromCurrent = 1, count=0;
 		
-		System.out.println(pendingProcess.toString());
-		
 		while (pendingProcess.size()>0) {
 			
 			if (count>0)
@@ -121,106 +119,6 @@ public class AdvancedRoundRobin {
 			count++;
 		}
 			
-			//if (currentIdx == 1)
-			//	pendingProcess.dequeue();
-			
-			//currentIdx++;
-//		boolean hasNextProcess;
-//		int numProcessFromCurrent;
-//		// repeat till queue is empty and all processes are completed
-//		while(pendingProcess.size() > 0 || currentIdx<numProcess) {
-//			hasNextProcess = true;
-//			numProcessFromCurrent = 1;
-//			System.out.println("****"+currentTime+"****");
-//			// process's burst time < time quantum
-//			if (currentProcess.burstTime <= timeQuantum) {
-//				System.out.println(0);
-//				for (int i=0; i<currentProcess.burstTime; i++) 
-//					ganttChart += currentProcess.code;
-//				
-//				currentProcess.slices.add(currentTime);
-//				currentTime += currentProcess.burstTime;
-//				currentProcess.burstTime = 0;
-//				
-//				currentProcess.completeTime = currentTime;
-//				currentProcess.turnAroundTime = currentProcess.completeTime - currentProcess.arrivalTime;
-//				currentProcess.waitTime = currentProcess.turnAroundTime - currentProcess.fixedBurst;
-//				
-//				totalTA += currentProcess.turnAroundTime;
-//				totalWait += currentProcess.waitTime;
-//				System.out.println("---"+currentTime+"---");
-//				// check for any process arrive after current process was completed
-//				// add them to queue
-//				while(hasNextProcess) {
-//					if (((currentIdx+numProcessFromCurrent)<numProcess) &&sortedAllArrivalTime[currentIdx+numProcessFromCurrent]<= currentTime) {
-//						System.out.println(1);
-//						RoundRobinProcess r = treeMap.get(sortedAllArrivalTime[currentIdx+numProcessFromCurrent]);
-//						pendingProcess.enqueue(r);
-//						System.out.println("current idx: "+currentIdx);
-//						System.out.println("added "+r.code+" at "+"idx "+(currentIdx+numProcessFromCurrent));
-//						System.out.println("hahahaha: "+r.code);
-//						System.out.println("****");
-//						System.out.println(pendingProcess.toString());
-//						//numProcessFromCurrent++;
-//						currentIdx++;
-//						//currentIdx= currentIdx+ numProcessFromCurrent;
-//					}
-//					else
-//						{hasNextProcess = false; System.out.println(2);}			
-//				}
-//			}else {
-//				
-//				for (int i=0; i<timeQuantum; i++) 
-//					ganttChart += currentProcess.code;
-//				
-//				currentProcess.slices.add(currentTime);
-//				currentProcess.burstTime -= timeQuantum;
-//				currentTime += timeQuantum;
-//				
-//				// check for any process arrive after current process was completed
-//				// add them to queue
-//				while(hasNextProcess) {
-//					if (((currentIdx+numProcessFromCurrent)<numProcess) &&sortedAllArrivalTime[currentIdx+numProcessFromCurrent]<= currentTime) {
-//						System.out.println(3);
-//						RoundRobinProcess r = treeMap.get(sortedAllArrivalTime[currentIdx+numProcessFromCurrent]);
-//						pendingProcess.enqueue(r);
-//						System.out.println(pendingProcess);
-//						//numProcessFromCurrent++;
-//						currentIdx++;
-//						//currentIdx= currentIdx+ numProcessFromCurrent;
-//					}
-//					else
-//						{hasNextProcess = false; System.out.println(4);}
-//				}
-//				
-//				// current process has remaining burst time
-//				// add the current process to the end of queue
-//				pendingProcess.enqueue(currentProcess);
-//			}
-//			
-//			//if (s.isEmpty() || s.indexOf(currentProcess.code)==-1){
-//			//	currentIdx++;
-//			//	s.add(currentProcess.code);
-//			//}
-//			
-////			if (currentIdx == 1) {
-////				pendingProcess.dequeue();
-////			}
-//			
-//			if (pendingProcess.size()>0)
-//				currentProcess = (RoundRobinProcess)pendingProcess.dequeue();
-//			System.out.println(pendingProcess.toString());
-//			System.out.println("next: "+currentProcess.code);
-//		}
-		
-		
-		for (int i=0; i<numProcess; i++) {
-			RoundRobinProcess s = (RoundRobinProcess) treeMap.get(sortedAllArrivalTime[i]);
-			System.out.println(sortedAllArrivalTime[i]+": "+s.code);
-		}
-		
-		System.out.println("Current Time: "+currentTime);
-		
 		// output the statistics for each process, Gantt chart, average turn around time and waiting time
 		System.out.println("\nProcess\tArrival\tBurst\t Exec. slices (t) \tComplete\tTurnaround\tWaiting");
 		System.out.println(allProcess.toString());
