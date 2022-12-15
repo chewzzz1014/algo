@@ -1,11 +1,12 @@
-
+// Chew Zi Qing 212360
 public class BST<T> {
 	
 	T root;
 	BST left, right;
 	
 	public BST(T root) {
-		this.root = root;
+		// create new empty BST
+		root = null;
 	}
 	
 	public boolean search(BST t, int n) {
