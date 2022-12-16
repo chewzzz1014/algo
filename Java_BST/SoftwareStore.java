@@ -1,83 +1,130 @@
-/*
- * Implement a menu-driven program for managing a software store. All information about the available software is stored in file software. This information includes the name, version, quantity, and price of each package. When it is invoked, the program automatically creates a binary search tree with one node corresponding to one software package and includes as its key the name of the package and its version. Another field in this node should include the position of the record in the file software. The only access to the information stored in software should be through this tree.
-
--- Operation: 
-----1. Add (put to end of file)
-----2. Update quantity (if adding existing software)
-----4. Sell (deduct quantity)
-----3. Delete (exit and delete those with quantity=0)
-
-The program should allow the file and tree to be updated when new software packages arrive at the store and when some packages are sold. The tree is updated in the usual way. All packages are entry ordered in the file software; if a new package arrives, then it is put at the end of the file. If the package already has an entry in the tree (and the file), then only quantity field is updated. If a package is sold out, the corresponding node is deleted from the tree, and the quantity field in the file is change to 0. For example, if the file has these entries:
-
-Adobe Photoshop	7.0		21		580
-Norton Utilities []		10		  30
-Norton SystemWorks []	6		  50
-Visual J++ Professional	6.0		19		100
-Visual J++ Standard	6.0		27		  40
-
-Then after selling all six copies of Norton SystemWorks, the file is
-
-Adobe Photoshop	7.0		21		580
-Norton Utilities []		10		  30
-Norton SystemWorks []	 0		  50
-Visual J++ Professional	6.0		19		100
-Visual J++ Standard	6.0		27		  40
-
-If an exit option is chosen from the menu, the program cleans up the file by moving entries from the end of file to the position marked with 0 quantities. For example, the previous file becomes
-
-Adobe Photoshop	7.0		21		580
-Norton Utilities []		10		  30
-Visual J++ Professional	6.0		19		100
-Visual J++ Standard	6.0		27		  40
-
- */
-
 // Chew Zi Qing 212360
 import java.util.Arrays;
 import java.util.Scanner;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class SoftwareStore {
-	public static void main(String[] args) throws Exception {
-		 BinarySearchTree<Software> tree = new BinarySearchTree<>();
-		 File file = new File("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt");
-		Scanner sc = new Scanner(file);
+	public static void main(String[] args) throws IOException {
+		BinarySearchTree<Software> tree = new BinarySearchTree<Software>();
+		 BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt"));
 		 
-		String softwareName, softwareVersion;
-		int quantity, price;
+		String softwareName, softwareVersion, line;
+		int quantity, price, pos=0;
 		Software s;
-		 while(sc.hasNext()) {
-			 String softwareInfo = sc.nextLine();
-			 String[] splitedInfo = softwareInfo.split(",");
+		 while((line = reader.readLine()) != null) {
+			 String[] splitedInfo = line.split(",");
 			 
 			 softwareName = splitedInfo[0];
 			 quantity = Integer.parseInt(splitedInfo[2]);
 			 price = Integer.parseInt(splitedInfo[3]);
+			 
 			 if (!splitedInfo[1].equals("")) {
 				 softwareVersion = splitedInfo[1];
 				 s = new Software(softwareName, softwareVersion, quantity, price);
+				 tree.insert(s, pos);
 			 }else {
 				 s = new Software(softwareName, quantity, price);
+				 tree.insert(s, pos);
 			 }
-			 System.out.println(s.toString());
+			 pos += line.length()+1;
 		 }
-		 tree.inOrder();
-		 // name|version|quantity|price
-//	    tree.insert(8);
-//	    tree.insert(3);
-//	    tree.insert(1);
-//	    tree.insert(6);
-//	    tree.insert(7);
-//	    tree.insert(10);
-//	    tree.insert(14);
-//	    tree.insert(4);
-//	
-//	    System.out.print("Inorder traversal: ");
-//	    tree.inorder();
-//	
-//	    System.out.println("\n\nAfter deleting 10");
-//	    tree.deleteKey(10);
-//	    System.out.print("Inorder traversal: ");
-//	    tree.inorder();
+		 reader.close();
+
+		 Scanner sc = new Scanner(System.in);
+		 boolean isDone = false;
+		 while(!isDone) {
+			 System.out.println("1. Add software");
+		      System.out.println("2. Sell software");
+		      System.out.println("3. Print inventory");
+		      System.out.println("4. Exit");
+		      System.out.print("Enter your choice: ");
+		      int choice = sc.nextInt();
+		      sc.nextLine();
+		      
+		      switch(choice) {
+		      case 1:
+		    	  System.out.print("Enter Name: ");
+		          softwareName = sc.nextLine();
+		          System.out.print("Enter Version: ");
+		          softwareVersion = sc.nextLine();
+		          System.out.print("Enter Quantity: ");
+		          quantity = Integer.parseInt(sc.nextLine());
+		          System.out.print("Enter Price: ");
+		          price = Integer.parseInt(sc.nextLine());
+		          
+		          Software software = new Software(softwareName,softwareVersion,quantity, price);
+		          BSTNode<Software> node = new BSTNode<>(software, pos);
+		          BSTNode<Software> foundNode = tree.search(software);
+		          if (foundNode == null) {
+		        	  BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt", true));
+		        	  writer.write(softwareName+"|"+softwareVersion+"|"+quantity+"|"+price);
+		        	  writer.close();
+		        	  tree.insert(software, pos);
+		        	  pos += (softwareName.length() + softwareVersion.length() + Integer.toString(quantity).length() + Integer.toString(price).length() + 3);
+		          }else {
+		        	  // software existed
+		        	  // update quantity and price
+		        	  foundNode.data.quantity += quantity;
+		        	  foundNode.data.price = price;
+		        	  
+		        	  // update file
+		        	  BufferedWriter writer1 = new BufferedWriter(new FileWriter("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt", true));
+		              BufferedReader reader1 = new BufferedReader(new FileReader("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt"));
+		              int i = 0;
+		              while ((line = reader1.readLine()) != null) {
+		                  if (i == node.position) {
+		                    writer1.write(softwareName + "," + softwareVersion + "," + node.data.quantity + "," + node.data.price + "\n");
+		                  } else {
+		                    writer1.write(line + "\n");
+		                  }
+		                  i += line.length() + 1;
+		                }
+		                reader1.close();
+		                writer1.close();
+		          }
+		          
+		    	  break;
+		      case 2:
+		    	  System.out.print("Enter Name: ");
+		          softwareName = sc.nextLine();
+		          BSTNode<Software> n = tree.search(softwareName);
+		          if (n == null) {
+		        	  System.out.println("Software not found");
+		          }else if (n.data.quantity == 0) {
+		              System.out.println("Software out of stock");
+		          }else {
+		        	  n.data.quantity--;
+		        	  BufferedWriter writer2 = new BufferedWriter(new FileWriter("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt", false));
+		              BufferedReader reader2 = new BufferedReader(new FileReader("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt"));
+		              int i = 0;
+		              while ((line = reader2.readLine()) != null) {
+		                if (i == n.position) {
+		                  writer2.write(softwareName + "," + n.data.version + "," + n.data.quantity + "," + n.data.price + "\n");
+		                } else {
+		                  writer2.write(line + "\n");
+		                }
+		                i += line.length() + 1;
+		              }
+		              reader2.close();
+		              writer2.close();
+		          }
+		    	  break;
+		      case 3:
+		    	  tree.printInventory();
+		    	  break;
+		      case 4:
+		    	  tree.updateFile();
+		    	  isDone = true;
+		    	  break;
+		      }
+		 }
+		
+		 
+
 		sc.close();
 	  }
 }
