@@ -44,17 +44,23 @@ public class SoftwareStore {
 		 
 		String softwareName, softwareVersion;
 		int quantity, price;
+		Software s;
 		 while(sc.hasNext()) {
 			 String softwareInfo = sc.nextLine();
 			 String[] splitedInfo = softwareInfo.split(",");
 			 
 			 softwareName = splitedInfo[0];
-			 if (!splitedInfo[1].equals(""))
-				 softwareVersion = splitedInfo[1];
 			 quantity = Integer.parseInt(splitedInfo[2]);
 			 price = Integer.parseInt(splitedInfo[3]);
-			 System.out.println(Arrays.toString(splitedInfo));
+			 if (!splitedInfo[1].equals("")) {
+				 softwareVersion = splitedInfo[1];
+				 s = new Software(softwareName, softwareVersion, quantity, price);
+			 }else {
+				 s = new Software(softwareName, quantity, price);
+			 }
+			 System.out.println(s.toString());
 		 }
+		 tree.inOrder();
 		 // name|version|quantity|price
 //	    tree.insert(8);
 //	    tree.insert(3);
