@@ -5,22 +5,24 @@ class BinarySearchTree<T>{
     root = null;
   }
 
-  void insert(int key) {
+  void insert(T key) {
     root = insertKey(root, key);
   }
 
   // Insert key in the tree
-  BSTNode<T> insertKey(BSTNode<T> root, int key) {
+  BSTNode<T> insertKey(BSTNode<T> root, T key) {
     // Return a new node if the tree is empty
     if (root == null) {
       root = new BSTNode<T>(key);
       return root;
     }
 
+    int targetNodePrice = ((Software)(key)).price;
+    int rootNodePrice = ((Software)(root.key)).price;
     // Traverse to the right place and insert the node
-    if (key < root.key)
+    if (targetNodePrice<rootNodePrice)
       root.left = insertKey(root.left, key);
-    else if (key > root.key)
+    else if (targetNodePrice>rootNodePrice)
       root.right = insertKey(root.right, key);
 
     return root;
@@ -39,19 +41,22 @@ class BinarySearchTree<T>{
     }
   }
 
-  void deleteKey(int key) {
+  void deleteKey(T key) {
     root = deleteRec(root, key);
   }
 
-  BSTNode<T> deleteRec(BSTNode<T> root, int key) {
+  BSTNode<T> deleteRec(BSTNode<T> root, T key) {
     // Return if the tree is empty
     if (root == null)
       return root;
 
     // Find the node to be deleted
-    if (key < root.key)
+    int targetNodePrice = ((Software)(key)).price;
+    int rootNodePrice = ((Software)(root.key)).price;
+    
+    if (targetNodePrice<rootNodePrice)
       root.left = deleteRec(root.left, key);
-    else if (key > root.key)
+    else if (targetNodePrice<rootNodePrice)
       root.right = deleteRec(root.right, key);
     else {
       // If the node is with only one child or no child
@@ -72,8 +77,8 @@ class BinarySearchTree<T>{
   }
 
   // Find the inorder successor
-  int minValue(BSTNode<T> root) {
-    int minv = root.key;
+  T minValue(BSTNode<T> root) {
+    T minv = root.key;
     while (root.left != null) {
       minv = root.left.key;
       root = root.left;

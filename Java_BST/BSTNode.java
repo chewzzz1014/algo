@@ -1,8 +1,8 @@
 public class BSTNode<T> {
-	 int key;
+	 T key;
 	 BSTNode<T> left, right;
 
-	 public BSTNode(int item) {
+	 public BSTNode(T item) {
 	    key = item;
 	    left = right = null;
 	 }
