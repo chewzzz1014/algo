@@ -152,7 +152,7 @@ class BinarySearchTree<T>{
 	    while ((line = reader.readLine()) != null) {
 	      String[] parts = line.split(",");
 	      int quantity = Integer.parseInt(parts[2]);
-	      if (quantity > 0 && pos>0) {
+	      if (quantity > 0) {
 	        writer.write(line+"\n");
 	      }
 	      else {
@@ -165,6 +165,7 @@ class BinarySearchTree<T>{
 	    writer.close();
 
 	    // replace software with cleaned up file
+	    // we end up with Software.txt only
 	    java.io.File oldFile = new java.io.File("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt");
 	    java.io.File newFile = new java.io.File("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software_tmp.txt");
 	    if (oldFile.delete()) {

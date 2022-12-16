@@ -11,6 +11,7 @@ public class SoftwareStore {
 	public static void main(String[] args) throws IOException {
 		BinarySearchTree<Software> tree = new BinarySearchTree<Software>();
 		 BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt"));
+		// BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt"));
 		 
 		String softwareName, softwareVersion, line;
 		int quantity, price, pos=0;
@@ -72,26 +73,26 @@ public class SoftwareStore {
 		        	  foundNode.data.price = price;
 		        	  
 		        	  // update file
-		        	  BufferedWriter writer1 = new BufferedWriter(new FileWriter("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt", true));
-		              BufferedReader reader1 = new BufferedReader(new FileReader("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt"));
+		        	  BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt", true));
+		              reader = new BufferedReader(new FileReader("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt"));
 		              int i = 0;
-		              while ((line = reader1.readLine()) != null) {
+		              while ((line = reader.readLine()) != null) {
 		                  if (i == node.position) {
-		                    writer1.write("\n"+softwareName + "," + softwareVersion + "," + node.data.quantity + "," + node.data.price + "\n");
+		                    writer.write(softwareName + "," + softwareVersion + "," + node.data.quantity + "," + node.data.price + "\n");
 		                  } else {
-		                    writer1.write("\n"+line);
+		                    writer.write(line+"\n");
 		                  }
 		                  i += line.length() + 1;
 		                }
-		                reader1.close();
-		                writer1.close();
+		                reader.close();
+		                writer.close();
 		          }
 		          
 		    	  break;
 		      case 2:
 		    	  System.out.print("Enter Name: ");
 		          softwareName = sc.nextLine();
-		          System.out.print("Enter Quantity Sold: ");
+		          //System.out.print("Enter Quantity Sold: ");
 		          //int copiesSold = Integer.parseInt(sc.nextLine());
 		          BSTNode<Software> n = tree.search(softwareName);
 		          if (n == null) {
@@ -100,20 +101,43 @@ public class SoftwareStore {
 		              System.out.println("Software out of stock");
 		          }else {
 		        	  System.out.println("Sold one "+n.data.name +"!");
-		        	  n.data.quantity = n.data.quantity-1;
-		        	  BufferedWriter writer2 = new BufferedWriter(new FileWriter("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt", false));
-		              BufferedReader reader2 = new BufferedReader(new FileReader("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt"));
-		              int i = 0;
-		              while ((line = reader2.readLine()) != null) {
-		                if (i == n.position) {
-		                  writer2.write("\n"+softwareName + "," + n.data.version + "," + n.data.quantity + "," + n.data.price + "\n");
-		                } else {
-		                  writer2.write("\n"+line);
-		                }
-		                i += line.length() + 1;
-		              }
-		              reader2.close();
-		              writer2.close();
+      	        	  n.data.quantity = n.data.quantity-1;
+//		        	  BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt", false));
+//		              reader = new BufferedReader(new FileReader("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt"));
+//		              int i = 0;
+//		              while ((line = reader.readLine()) != null) {
+//		                if (i == n.position) {
+//		                  writer.write(softwareName + "," + n.data.version + "," + n.data.quantity + "," + n.data.price + "\n");
+//		                } else {
+//		                  writer.write(line+"\n");
+//		                }
+//		                i += line.length() + 1;
+//		              }
+//		              reader.close();
+//		              writer.close();
+		        	  reader = new java.io.BufferedReader(new java.io.FileReader("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt"));
+		        	  java.io.BufferedWriter writer = new java.io.BufferedWriter(new java.io.FileWriter("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software_tmp.txt"));
+
+		      	    line="";
+		      	    int currentPos = 0;
+		      	    while ((line = reader.readLine()) != null) {
+		      	       if (currentPos == n.position) {
+		      	    	 writer.write(softwareName + "," + n.data.version + "," + n.data.quantity + "," + n.data.price + "\n");
+		      	       }else {
+		      	    	 writer.write(line+"\n"); 
+		      	       }
+		      	       currentPos += line.length() + 1;
+		      	    }
+		      	    reader.close();
+		      	    writer.close();
+
+		      	    // replace software with cleaned up file
+		      	    // we end up with Software.txt only
+		      	    java.io.File oldFile = new java.io.File("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt");
+		      	    java.io.File newFile = new java.io.File("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software_tmp.txt");
+		      	    if (oldFile.delete()) {
+		      	      newFile.renameTo(oldFile);
+		      	    }
 		          }
 		    	  break;
 		      case 3:
@@ -123,11 +147,11 @@ public class SoftwareStore {
 		    	  tree.updateFile();
 		    	  isDone = true;
 		    	  break;
+		     default:
+		    	 System.out.println("Invalid choice");
+		         break;
 		      }
 		 }
-		
-		 
-
 		sc.close();
 	  }
 }
