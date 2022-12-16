@@ -37,6 +37,7 @@ public class SoftwareStore {
 	public static void main(String[] args) {
 		 BinarySearchTree<Software> tree = new BinarySearchTree<>();
 	
+		 // name|version|quantity|price
 //	    tree.insert(8);
 //	    tree.insert(3);
 //	    tree.insert(1);

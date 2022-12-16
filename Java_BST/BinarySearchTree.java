@@ -9,7 +9,6 @@ class BinarySearchTree<T>{
     root = insertKey(root, key);
   }
 
-  // Insert key in the tree
   BSTNode<T> insertKey(BSTNode<T> root, T key) {
     // Return a new node if the tree is empty
     if (root == null) {
