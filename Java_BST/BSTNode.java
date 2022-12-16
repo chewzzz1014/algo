@@ -1,7 +1,14 @@
+// Chew Zi Qing 212360
+
+// BST Node with generic type
 public class BSTNode<T> {
+	 // for storing software info
 	 T data;
+	 // software's name + version
 	 String key;
+	 // left and right node
 	 BSTNode<T> left, right;
+	 // position in file
 	 int position;
 	 
 	 public BSTNode(T item, int position) {
