@@ -33,10 +33,28 @@ Visual J++ Standard	6.0		27		  40
  */
 
 // Chew Zi Qing 212360
+import java.util.Arrays;
+import java.util.Scanner;
+import java.io.*;
 public class SoftwareStore {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		 BinarySearchTree<Software> tree = new BinarySearchTree<>();
-	
+		 File file = new File("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt");
+		Scanner sc = new Scanner(file);
+		 
+		String softwareName, softwareVersion;
+		int quantity, price;
+		 while(sc.hasNext()) {
+			 String softwareInfo = sc.nextLine();
+			 String[] splitedInfo = softwareInfo.split(",");
+			 
+			 softwareName = splitedInfo[0];
+			 if (!splitedInfo[1].equals(""))
+				 softwareVersion = splitedInfo[1];
+			 quantity = Integer.parseInt(splitedInfo[2]);
+			 price = Integer.parseInt(splitedInfo[3]);
+			 System.out.println(Arrays.toString(splitedInfo));
+		 }
 		 // name|version|quantity|price
 //	    tree.insert(8);
 //	    tree.insert(3);
@@ -54,5 +72,6 @@ public class SoftwareStore {
 //	    tree.deleteKey(10);
 //	    System.out.print("Inorder traversal: ");
 //	    tree.inorder();
+		sc.close();
 	  }
 }

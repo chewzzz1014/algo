@@ -1,9 +1,11 @@
 public class BSTNode<T> {
-	 T key;
+	 T data;
+	 String key;
 	 BSTNode<T> left, right;
 
 	 public BSTNode(T item) {
-	    key = item;
+	    data = item;
+	   // key = (Software) data.key;
 	    left = right = null;
 	 }
 }
