@@ -119,7 +119,7 @@ class BinarySearchTree<T>{
       if (root==null)
           return null;
    
-      String rootNode = ((Software)(root.data)).key;
+      String rootNode = ((Software)(root.data)).name;
       // Key is greater than root's key
       if (name.compareTo(rootNode)<0)
          return searchRec(root.left, name);
@@ -139,21 +139,23 @@ class BinarySearchTree<T>{
 	    }
 	    printInventory(node.left);
 	    System.out.println(((Software)(node.data)).toString());
+	    System.out.println();
 	    printInventory(node.right);
 }
   
   public void updateFile() throws java.io.IOException {
 	  java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt"));
-	  java.io.BufferedWriter writer = new java.io.BufferedWriter(new java.io.FileWriter("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.tmp"));
+	  java.io.BufferedWriter writer = new java.io.BufferedWriter(new java.io.FileWriter("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software_tmp.txt"));
 
 	    String line;
 	    int pos = 0;
 	    while ((line = reader.readLine()) != null) {
-	      String[] parts = line.split("\t");
+	      String[] parts = line.split(",");
 	      int quantity = Integer.parseInt(parts[2]);
-	      if (quantity > 0) {
-	        writer.write(line + "\n");
-	      } else {
+	      if (quantity > 0 && pos>0) {
+	        writer.write(line+"\n");
+	      }
+	      else {
 	        // skip entries with 0 quantity
 	        continue;
 	      }
@@ -163,8 +165,8 @@ class BinarySearchTree<T>{
 	    writer.close();
 
 	    // replace software with cleaned up file
-	    java.io.File oldFile = new java.io.File("software");
-	    java.io.File newFile = new java.io.File("software.tmp");
+	    java.io.File oldFile = new java.io.File("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt");
+	    java.io.File newFile = new java.io.File("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software_tmp.txt");
 	    if (oldFile.delete()) {
 	      newFile.renameTo(oldFile);
 	    }

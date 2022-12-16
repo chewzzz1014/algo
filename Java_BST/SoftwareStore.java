@@ -61,7 +61,7 @@ public class SoftwareStore {
 		          BSTNode<Software> foundNode = tree.search(software);
 		          if (foundNode == null) {
 		        	  BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt", true));
-		        	  writer.write(softwareName+"|"+softwareVersion+"|"+quantity+"|"+price);
+		        	  writer.write("\n"+softwareName+","+softwareVersion+","+quantity+","+price);
 		        	  writer.close();
 		        	  tree.insert(software, pos);
 		        	  pos += (softwareName.length() + softwareVersion.length() + Integer.toString(quantity).length() + Integer.toString(price).length() + 3);
@@ -77,9 +77,9 @@ public class SoftwareStore {
 		              int i = 0;
 		              while ((line = reader1.readLine()) != null) {
 		                  if (i == node.position) {
-		                    writer1.write(softwareName + "," + softwareVersion + "," + node.data.quantity + "," + node.data.price + "\n");
+		                    writer1.write("\n"+softwareName + "," + softwareVersion + "," + node.data.quantity + "," + node.data.price + "\n");
 		                  } else {
-		                    writer1.write(line + "\n");
+		                    writer1.write("\n"+line);
 		                  }
 		                  i += line.length() + 1;
 		                }
@@ -91,21 +91,24 @@ public class SoftwareStore {
 		      case 2:
 		    	  System.out.print("Enter Name: ");
 		          softwareName = sc.nextLine();
+		          System.out.print("Enter Quantity Sold: ");
+		          //int copiesSold = Integer.parseInt(sc.nextLine());
 		          BSTNode<Software> n = tree.search(softwareName);
 		          if (n == null) {
 		        	  System.out.println("Software not found");
 		          }else if (n.data.quantity == 0) {
 		              System.out.println("Software out of stock");
 		          }else {
-		        	  n.data.quantity--;
+		        	  System.out.println("Sold one "+n.data.name +"!");
+		        	  n.data.quantity = n.data.quantity-1;
 		        	  BufferedWriter writer2 = new BufferedWriter(new FileWriter("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt", false));
 		              BufferedReader reader2 = new BufferedReader(new FileReader("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt"));
 		              int i = 0;
 		              while ((line = reader2.readLine()) != null) {
 		                if (i == n.position) {
-		                  writer2.write(softwareName + "," + n.data.version + "," + n.data.quantity + "," + n.data.price + "\n");
+		                  writer2.write("\n"+softwareName + "," + n.data.version + "," + n.data.quantity + "," + n.data.price + "\n");
 		                } else {
-		                  writer2.write(line + "\n");
+		                  writer2.write("\n"+line);
 		                }
 		                i += line.length() + 1;
 		              }
