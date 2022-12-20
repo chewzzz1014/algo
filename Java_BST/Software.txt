@@ -3,5 +3,3 @@ Norton Utilities,,10,30
 Norton SystemWorks,,6,50
 Visual J++ Professional,6.0,19,100
 Visual J++ Standard,6.0,27,40
-AAA,12.34,3,20
-BBB,12.33,2,25.6
