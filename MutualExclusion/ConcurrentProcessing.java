@@ -1,22 +1,39 @@
-/*
- * Create a Java program which calculates the factorial for 5 numbers (values ranging from 1 to 10) specified by user. 
-E.g.
-	Enter 5 numbers [1-10]: 10 3 6 7 4
-
-	The factorials for 10 3 6 7 4 are 3628800 6 720 5040 24
-
-You must use multithreading to perform the processing, by creating a thread to calculate the factorial for each number given. The threads may store all the results into a single array. Then print out the results after all results has been calculated and stored inside the array (You may also use other data structure other than array if it is more suitable). 
- */
+import java.util.*;
 public class ConcurrentProcessing extends Thread {
-	long[] allResults = new long[5];
+	static int[] allInputs = new int[5];
+	static long[] allResults = new long[5];
+	static Thread[] allThreads = new Thread[5];
 	
-	public static void main (String[]args) {
-		CountFactorial cf = new CountFactorial(0, 3);
-		Thread t = new Thread(cf);
-		t.start();
+	public static void main (String[]args) throws InterruptedException {
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("Enter 5 numbers [1-10]: ");
+		for(int i=0; i<5; i++) {
+			allInputs[i] = sc.nextInt();
+			allThreads[i] = new Thread(new CountFactorial(i, allInputs[i]));
+		}
+		
+		for(Thread t: allThreads)
+			t.start();
+		
+		for(Thread t: allThreads)
+			t.join();
+		
+		// exclude [ ] and comma in Arrays.toString()
+		String allInputsDisplay = String.join(" ", Arrays.toString(allInputs)
+										.substring(1, Arrays.toString(allInputs)
+										.length()-1)
+										.split(", "));
+		String allResultsDisplay = String.join(" ", Arrays.toString(allResults)
+										.substring(1, Arrays.toString(allResults)
+										.length()-1)
+										.split(", "));
+		
+		System.out.print("The factorials for "+allInputsDisplay + " are "+allResultsDisplay);
+		sc.close();
 	}
 	
-	class CountFactorial implements Runnable{
+	static class CountFactorial implements Runnable{
 		public int idx, value;
 		long result=1;
 		
@@ -29,7 +46,6 @@ public class ConcurrentProcessing extends Thread {
 			for(int i=1; i<=value; i++) {
 				result *= i;
 			}
-			System.out.println("Result is "+result);
 			allResults[idx] = result;
 		}
 	}
