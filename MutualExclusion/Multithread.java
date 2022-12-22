@@ -1,7 +1,7 @@
 // Chew Zi Qing 212360
 public class Multithread extends Thread {
 	public static void main (String[]args) throws InterruptedException{
-		for (int i=0; i<10; i++) {
+		for (int i=1; i<=10; i++) {
 			
 			// Local variable defined in an enclosing scope must be final!
 			final String count = i+"";
