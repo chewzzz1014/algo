@@ -34,7 +34,7 @@ public class ConcurrentProcessing extends Thread {
 										.length()-1)
 										.split(", "));
 		
-		System.out.print("The factorials for "
+		System.out.print("\nThe factorials for "
 						 + allInputsDisplay + " are "+allResultsDisplay);
 		sc.close();
 	}
