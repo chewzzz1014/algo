@@ -1,4 +1,4 @@
-// Chew Zi Qing
+// Chew Zi Qing 212360
 import java.util.*;
 public class ConcurrentProcessing extends Thread {
 	// to store user inputs, factorials and thread
