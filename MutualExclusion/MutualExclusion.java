@@ -1,75 +1,99 @@
-// class for ensuring mutual exclusion by locking
-import java.util.concurrent.locks.ReentrantLock;
 
-public class MutualExclusion extends Thread {
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.Condition;
+
+public class MutualExclusion extends Thread{
 	
 	// message to be send/received
 	String msg = "";
 	
-	public static void main (String[]args) {
-		Server server = new Server();
-		Client client1 = new Client("1", server);
-		Client client2 = new Client("2", server);
+	public static void main (String[]args) throws InterruptedException {
+		Semaphore s = new Semaphore(1);
+		Server server = new Server(s, "", 20);
+		Client c1 =  new Client(server, s, "", 10);
+		Client c2 = new Client(server, s, "", 10);
 		
-		new Thread(server).start();
-		new Thread(client1).start();
-		new Thread(client2).start();
+		c1.setName("Client 1");
+		c2.setName("Client 2");
+		
+		server.start();
+		c1.start();
+		c1.join();
+		
+		c2.start();
+		c2.join();
+			
+		 System.out.println("Simulation ends");
+	}
+}
+
+class Server extends Thread{
+	Semaphore s;
+	String msg;
+	int count;
+	
+	public Server(Semaphore s, String msg, int count) {
+		this.s = s;
+		this.msg = msg;
+		this.count = count;
 	}
 	
-	// inner class. Server that's able to pong to client
-	static class Server implements Runnable{
-		String msg = "";
-		ReentrantLock reentrantlock = new ReentrantLock();
-		public Server() {
-			
-		}
-		public void run() {
-		
-		}
-		
-		private void receiveMsg(String receivedMsg) {
-			reentrantlock.lock();
-			try {
-				this.msg = receivedMsg;
-			}catch(Exception e) {
-				e.printStackTrace();
-			}finally {
-				reentrantlock.unlock();
-			}
-		}
-		
-		private void replyMsg() {
-			
-		}
+	public void run(){
 	}
+
 	
-	// inner class. Client that's able ping to client
-	static class Client implements Runnable{
-		String id;
-		Server server;
-		private ReentrantLock reentrantlock = new ReentrantLock();
-		
-		public Client(String id, Server server) {
-			this.id = id;
-			this.server = server;
-		}
-		public void run() {
-			
-		}
-		
-		private void sendMsg() {
-			reentrantlock.lock();
-			try {
-				System.out.printf("Client %1s ping\n", id);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}finally {
-				reentrantlock.unlock();
-			}
-		}
-		
-		private void waitForReply() {
-			
+	public void pong(int i, String clientName, ReentrantLock l) {
+		l.lock();
+		try {
+	        msg = "Server pong " + i + " to " + clientName;
+			System.out.println(msg);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			l.unlock();
 		}
 	}
 }
+
+class Client extends Thread{
+	Server server;
+	Semaphore s;
+	String msg;
+	int count;
+	ReentrantLock l = new ReentrantLock();
+	
+	public Client(Server server, Semaphore s, String msg, int count) {
+		this.server = server;
+		this.s = s;
+		this.msg = msg;
+		this.count = count;
+	}
+	
+	public void run(){
+		for(int i=1; i<=count; i++) {
+			try {
+				l.lock();
+				this.ping(i);
+				server.pong(i, Thread.currentThread().getName(), l); 
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				l.unlock();
+			}
+		}
+	}
+	
+	public synchronized void ping(int i) {
+		l.lock();
+		try {
+			msg = Thread.currentThread().getName() + " ping " + i ;
+			System.out.println(msg);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			l.unlock();
+		}
+	}
+}
+
