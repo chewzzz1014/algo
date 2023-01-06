@@ -32,6 +32,7 @@ public class SearchSortPartB {
 				for(String s: allWordsInSentence) {
 					// if it's a Java keyword
 					if (kw.contains(s.toLowerCase())){
+						// keyword haven't added to map?
 						if (map.containsKey(s))
 							// increase number of occurence
 							map.put(s, map.get(s)+1);
