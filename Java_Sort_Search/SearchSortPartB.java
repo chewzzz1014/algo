@@ -50,7 +50,7 @@ public class SearchSortPartB {
 		
 		// display keywords and their #occurence
 		for (var entry : treeMap.entrySet()) {
-		    System.out.println(entry.getKey() + " appeared " + entry.getValue()+ "times");
+		    System.out.println(entry.getKey() + " appeared " + entry.getValue()+ " times");
 		}
 	}
 }
