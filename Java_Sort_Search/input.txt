@@ -1,17 +1,68 @@
-The public static void main(String[] args) method is the entry point for any Java program. 
-It is called when the program is run from the command line. 
-Within the main method, we can use various control structures such as if, for, and while loops to execute different blocks of code based on certain conditions. 
-We can also use try and catch blocks to handle exceptions and errors.
+package repetition;
 
-The for loop in Java allows you to iterate over a sequence of elements, such as an array or a list. 
-You can use the break statement to exit the loop early, or the continue statement to skip the remainder of the current iteration. 
-Within the loop, you can use the if statement to perform conditional logic and make decisions about which elements to process.
+import java.util.Scanner;
 
-One of the key features of Java is its support for object-oriented programming. 
-You can define classes to represent real-world objects, and create objects from those classes. 
-You can also use inheritance to create a hierarchy of classes, with more specialized classes extends more general ones. 
-The final keyword can be used to prevent a class or method from being overridden, while the abstract keyword allows you to create methods that must be implemented by any concrete subclasses.
-
-The Java try-catch block allows you to handle exceptions that may be thrown during the execution of your program. 
-You can use the throw statement to throw your own exceptions, or the throws clause to declare that a method may throw certain exceptions.
-You can also use the finally block to execute code regardless of whether an exception is thrown or not. 
+public class Repetition1 {
+public static void main (String[]args)
+{
+	double weight,height,bmi,waist;
+	char ifCont, gender; boolean cont=true;
+	String name="", bmiStatus="", healthStatus="a good life style";
+	
+	Scanner sc=new Scanner (System.in);
+	System.out.print("*************BMI INFORMATION*************");
+	System.out.print("\n\t18.5-24.9 --> Normal");
+	System.out.print("\n\t25-29.9 --> Over Weight");
+	System.out.print("\n\t30-34.9 --> Obese");
+	System.out.print("\n\t35-39.9 --> Severely Obese");
+	System.out.print("\n\t>=40 --> Normal");
+	System.out.print("\n\n************EXTRA INFORMATION************");
+	System.out.print("\nWomen with Waist Size of >35 inches");
+	System.out.print("\nMen with Waist Size of >40 inches");
+    System.out.print("\n\nHas higher risk of Heart Disease and Type 2 Diabetes!");
+    System.out.print("\n\n************HEALTH CALCULATOR************");
+    
+   
+    
+    while (cont)
+    {
+    	System.out.print("\nEnter Name: ");
+        name=sc.nextLine();
+        System.out.print("\nEnter gender: ");
+        gender=sc.next().toUpperCase().charAt(0);
+        System.out.print("\nEnter height (m): ");
+        height=sc.nextDouble();
+        System.out.print("\nEnter weight (kg): ");
+        weight=sc.nextDouble();
+        System.out.print("\nEnter waist size (inches): ");
+        waist=sc.nextDouble(); 
+   
+        
+    	bmi=weight/(height*height);
+    	if (bmi>=18.5 && bmi<=24.9)
+    		bmiStatus="Normal";
+    	else if (bmi>=25 && bmi<=29.9)
+    		bmiStatus="Over Weight";
+    	else if (bmi>=30 && bmi<=34.9)
+    		bmiStatus="Obese";
+    	else if (bmi>=35 && bmi<=39.9)
+    		bmiStatus="Severely Obese";
+    	else if (bmi>=40)
+    		bmiStatus="Morbidly Obese";
+    	
+    	switch (gender)
+    	{
+    	case 'F': if (waist>35)  healthStatus="higher risk for heart disease and diabetes"; break;
+    	case'M': if (waist>40)  healthStatus="higher risk for heart disease and diabetes"; break;
+    	}
+    	
+    	System.out.printf("\n%1s, your BMI is %.2f, so means you are %1s and has %1s.",name,bmi,bmiStatus,healthStatus);
+    	System.out.print("\n\nDo you wish to continue? (Y/N) ");
+    	ifCont=sc.next().toUpperCase().charAt(0);
+    	if (ifCont=='N') cont=false;
+    	sc.nextLine();
+    }
+    System.out.print("\n************THANK YOU************");
+    sc.close();
+}
+}
