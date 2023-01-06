@@ -9,7 +9,6 @@ import java.util.TreeMap;
 public class SearchSortPartB {
 	public static void main (String[]args) throws IOException{
 		
-		int lineNum = 1;
 		String line;
 		String FILEPATH = 
 				"C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_Sort_Search\\input.txt";
@@ -33,7 +32,6 @@ public class SearchSortPartB {
 					}
 				}
 			}
-			lineNum ++;
 		}
 		reader.close();
 
