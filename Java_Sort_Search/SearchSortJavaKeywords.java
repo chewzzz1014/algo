@@ -1,15 +1,14 @@
 //import javax.lang.model.SourceVersion.isName;
 import java.io.*;
+import java.util.ArrayList;
 
 public class SearchSortJavaKeywords {
 	public static void main (String[]args) throws IOException{
-		String line;
-		String FILEPATH = "C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_Sort_Search\\JavaKeyword.txt";
+		ArrayList<String> kw = new JavaKeywords().getKeyWords();
 		
-		BufferedReader reader = new BufferedReader(new FileReader(FILEPATH));
-		while ((line = reader.readLine()) != null) {
-			System.out.println(line);
+		
+		for(int i =0; i<kw.size(); i++) {
+			System.out.println(kw.get(i));
 		}
-		reader.close();
 	}
 }
