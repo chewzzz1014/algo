@@ -1,6 +1,7 @@
 //import javax.lang.model.SourceVersion.isName;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -17,7 +18,15 @@ public class SearchSortJavaKeywords {
 		Map<Integer, Integer> map = new HashMap<>();
 		
 		while((line = reader.readLine()) != null) {
-			System.out.println(line);
+			String[] allWordsInSentence = line.split(" |\\. |, ");
+			System.out.println(Arrays.toString(allWordsInSentence));
+			
+			// not an empty line
+			if (allWordsInSentence.length > 0) {
+				for(String s: allWordsInSentence) {
+					System.out.println(s + " " + kw.contains(s.toLowerCase()));
+				}
+			}
 		}
 
 		TreeMap<Integer, Integer> treeMap = new TreeMap<>(map);

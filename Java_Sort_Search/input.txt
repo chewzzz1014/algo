@@ -9,7 +9,7 @@ Within the loop, you can use the if statement to perform conditional logic and m
 
 One of the key features of Java is its support for object-oriented programming. 
 You can define classes to represent real-world objects, and create objects from those classes. 
-You can also use inheritance to create a hierarchy of classes, with more specialized classes extending more general ones. 
+You can also use inheritance to create a hierarchy of classes, with more specialized classes extends more general ones. 
 The final keyword can be used to prevent a class or method from being overridden, while the abstract keyword allows you to create methods that must be implemented by any concrete subclasses.
 
 The Java try-catch block allows you to handle exceptions that may be thrown during the execution of your program. 
