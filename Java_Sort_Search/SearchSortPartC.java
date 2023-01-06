@@ -50,7 +50,11 @@ public class SearchSortPartC {
 		TreeMap<String, ArrayList<Integer>> treeMap2 = new TreeMap<>(mapWithLineNums);
 		
 		for (String s : treeMap1.keySet()) {
-		    System.out.println(s +" appeared "+ treeMap1.get(s) + " in lines "+treeMap2.get(s));
+			// exclude [ ] of ArrayList's toString
+			String allLineNum = treeMap2.get(s).toString();
+			allLineNum = allLineNum.substring(1, allLineNum.length()-1);
+			
+		    System.out.println(s +" appeared "+ treeMap1.get(s) + " times in lines "+ allLineNum);
 		    System.out.println();
 		}
 	}
