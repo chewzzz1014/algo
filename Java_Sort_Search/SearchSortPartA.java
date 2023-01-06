@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class SearchSortJavaKeywords {
+public class SearchSortPartA {
 	public static void main (String[]args) throws IOException{
 		
 		int lineNum = 1;
@@ -35,6 +35,7 @@ public class SearchSortJavaKeywords {
 			}
 			lineNum ++;
 		}
+		reader.close();
 
 		// TreeMap will sort the keys in map
 		TreeMap<String, Integer> treeMap = new TreeMap<>(map);
