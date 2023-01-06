@@ -16,7 +16,8 @@ public class SearchSortPartC {
 		BufferedReader reader = new BufferedReader(new FileReader(FILEPATH));
 		
 		ArrayList<String> kw = new JavaKeywords().getKeyWords();
-		Map<String, Integer> map = new HashMap<>();
+		Map<String, Integer> mapWithOccurence = new HashMap<>();
+		Map<String, ArrayList<Integer>> mapWithLineNums = new HashMap<>();
 		
 		while((line = reader.readLine()) != null) {
 			String[] allWordsInSentence = line.split(" |\\. |, ");
@@ -25,25 +26,32 @@ public class SearchSortPartC {
 			// check all words in the line
 			if (allWordsInSentence.length > 0) {
 				for(String s: allWordsInSentence) {
-					if (kw.contains(s.toLowerCase())){
-						if (map.containsKey(s))
-							map.put(s, map.get(s)+1);
-						else
-							map.put(s, 1);
+					if (kw.contains(s.toLowerCase())){		
+						if (mapWithOccurence.containsKey(s)) {
+							mapWithOccurence.put(s, mapWithOccurence.get(s)+1);
+							
+							ArrayList<Integer> l = mapWithLineNums.get(s);
+							l.add(lineNum);
+							mapWithLineNums.put(s, l);
+						}
+						else {
+							mapWithOccurence.put(s, 1);
+							mapWithLineNums.put(s, new ArrayList<Integer>(Arrays.asList(lineNum)));
+						}
 					}
-				}
+				}	
 			}
 			lineNum ++;
 		}
 		reader.close();
 
 		// TreeMap will sort the keys in map
-		TreeMap<String, Integer> treeMap = new TreeMap<>(map);
+		TreeMap<String, Integer> treeMap1 = new TreeMap<>(mapWithOccurence);
+		TreeMap<String, ArrayList<Integer>> treeMap2 = new TreeMap<>(mapWithLineNums);
 		
-		for (var entry : treeMap.entrySet()) {
-		    System.out.println(entry.getKey() + " " + entry.getValue());
+		for (String s : treeMap1.keySet()) {
+		    System.out.println(s +" appeared "+ treeMap1.get(s) + " in lines "+treeMap2.get(s));
+		    System.out.println();
 		}
-		
-		//String[] allKeywords = treeMap.keySet().toArray(new String[treeMap.size()]);
 	}
 }
