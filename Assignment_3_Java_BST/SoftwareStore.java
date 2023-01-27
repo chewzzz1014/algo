@@ -76,9 +76,9 @@ public class SoftwareStore {
 		          // create new software
 		          Software software = new Software(softwareName,softwareVersion,quantity, price);
 		          // create new node
-		          BSTNode<Software> node = new BSTNode<>(software, pos);
+		          BinarySearchTreeNode<Software> node = new BinarySearchTreeNode<>(software, pos);
 		          //check if the software existed in Software.txt
-		          BSTNode<Software> foundNode = tree.search(software);
+		          BinarySearchTreeNode<Software> foundNode = tree.search(software);
 		          
 		          // software not existed in Software.txt
 		          if (foundNode == null) {
@@ -126,7 +126,7 @@ public class SoftwareStore {
 		          System.out.println();
 		          
 		        //check if the software existed in Software.txt
-		          BSTNode<Software> n = tree.search(softwareName);
+		          BinarySearchTreeNode<Software> n = tree.search(softwareName);
 		          
 		          if (n == null) {
 		        	// software not existed in Software.txt

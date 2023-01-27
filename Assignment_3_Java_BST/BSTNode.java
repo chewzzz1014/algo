@@ -7,7 +7,7 @@ public class BSTNode<T> {
 	 // software's name + version
 	 String key;
 	 // left and right node
-	 BSTNode<T> left, right;
+	 BinarySearchTreeNode<T> left, right;
 	 // position in file
 	 int position;
 	 
