@@ -1,0 +1,68 @@
+package repetition;
+
+import java.util.Scanner;
+
+public class Repetition1 {
+public static void main (String[]args)
+{
+	double weight,height,bmi,waist;
+	char ifCont, gender; boolean cont=true;
+	String name="", bmiStatus="", healthStatus="a good life style";
+	
+	Scanner sc=new Scanner (System.in);
+	System.out.print("*************BMI INFORMATION*************");
+	System.out.print("\n\t18.5-24.9 --> Normal");
+	System.out.print("\n\t25-29.9 --> Over Weight");
+	System.out.print("\n\t30-34.9 --> Obese");
+	System.out.print("\n\t35-39.9 --> Severely Obese");
+	System.out.print("\n\t>=40 --> Normal");
+	System.out.print("\n\n************EXTRA INFORMATION************");
+	System.out.print("\nWomen with Waist Size of >35 inches");
+	System.out.print("\nMen with Waist Size of >40 inches");
+    System.out.print("\n\nHas higher risk of Heart Disease and Type 2 Diabetes!");
+    System.out.print("\n\n************HEALTH CALCULATOR************");
+    
+   
+    
+    while (cont)
+    {
+    	System.out.print("\nEnter Name: ");
+        name=sc.nextLine();
+        System.out.print("\nEnter gender: ");
+        gender=sc.next().toUpperCase().charAt(0);
+        System.out.print("\nEnter height (m): ");
+        height=sc.nextDouble();
+        System.out.print("\nEnter weight (kg): ");
+        weight=sc.nextDouble();
+        System.out.print("\nEnter waist size (inches): ");
+        waist=sc.nextDouble(); 
+   
+        
+    	bmi=weight/(height*height);
+    	if (bmi>=18.5 && bmi<=24.9)
+    		bmiStatus="Normal";
+    	else if (bmi>=25 && bmi<=29.9)
+    		bmiStatus="Over Weight";
+    	else if (bmi>=30 && bmi<=34.9)
+    		bmiStatus="Obese";
+    	else if (bmi>=35 && bmi<=39.9)
+    		bmiStatus="Severely Obese";
+    	else if (bmi>=40)
+    		bmiStatus="Morbidly Obese";
+    	
+    	switch (gender)
+    	{
+    	case 'F': if (waist>35)  healthStatus="higher risk for heart disease and diabetes"; break;
+    	case'M': if (waist>40)  healthStatus="higher risk for heart disease and diabetes"; break;
+    	}
+    	
+    	System.out.printf("\n%1s, your BMI is %.2f, so means you are %1s and has %1s.",name,bmi,bmiStatus,healthStatus);
+    	System.out.print("\n\nDo you wish to continue? (Y/N) ");
+    	ifCont=sc.next().toUpperCase().charAt(0);
+    	if (ifCont=='N') cont=false;
+    	sc.nextLine();
+    }
+    System.out.print("\n************THANK YOU************");
+    sc.close();
+}
+}
