@@ -31,7 +31,7 @@ public class DepthFirstSearch {
 	        System.out.println("Adjacency matrix:");
 	        for (int i = 0; i < numVertices; i++) {
 	            for (int j = 0; j < numVertices; j++) {
-	                System.out.print(graph.isEdge(i, j) ? "1 " : "0 ");
+	                System.out.print(graph.isEdge(i, j) ? "T " : "F ");
 	            }
 	            System.out.println();
 	        }
