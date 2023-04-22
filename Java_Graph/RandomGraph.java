@@ -1,51 +1,44 @@
 import java.util.*;
 
 public class RandomGraph {
-	boolean[][] adjMatrix;
-	int numVertices;
-	Random rand;
-	
-	public RandomGraph(int numVertices) {
-		this.numVertices = numVertices;
-		adjMatrix = new boolean[numVertices][numVertices];
-		rand = new Random();
-		generateGraph();
-	}
-	
-	public void generateGraph() {
-		for (int i=0; i<numVertices; i++) {
-			for (int j=0; j<numVertices; j++) {
-				if (rand.nextBoolean()) {
-					addEdge(i, i);
-				}
-			}
-		}
-	}
-	
-	public void addEdge(int i, int j) {
-		adjMatrix[i][j] = true;
-		adjMatrix[j][i] = true;
-	}
-	
-	public List<Integer> getPath(int start, int end, int[] parent) {
-		List<Integer> path = new ArrayList<>();
-		int current = end;
-		while (current != -1) {
-			path.add(0, current);
-			current = parent[current];
-		}
-		if (path.get(0) != start) {
-			return null;
-		}
-		return path;
-	}
-	
-	public void printGraph() {
-		for(int i=0; i<numVertices; i++) {
-			for (int j=0; j<numVertices; j++) {
-				System.out.print(adjMatrix[j][i]? "1": "0 ");
-			}
-			System.out.println();
-		}
-	}
+	boolean[][] adjacencyMatrix;
+    int numVertices;
+    
+    public RandomGraph(int numVertices) {
+        this.numVertices = numVertices;
+        adjacencyMatrix = new boolean[numVertices][numVertices];
+    }
+    
+    public void addEdge(int i, int j) {
+        adjacencyMatrix[i][j] = true;
+        adjacencyMatrix[j][i] = true;
+    }
+    
+    public void removeEdge(int i, int j) {
+        adjacencyMatrix[i][j] = false;
+        adjacencyMatrix[j][i] = false;
+    }
+    
+    public boolean isEdge(int i, int j) {
+        return adjacencyMatrix[i][j];
+    }
+    
+    public static RandomGraph generateGraph(int numVertices) {
+        RandomGraph graph = new RandomGraph(numVertices);
+        Random random = new Random();
+        boolean[] visited = new boolean[numVertices];
+        int start = random.nextInt(numVertices);
+        visited[start] = true;
+        int count = 1;
+        while (count < numVertices) {
+            int end = random.nextInt(numVertices);
+            if (!visited[end]) {
+                graph.addEdge(start, end);
+                visited[end] = true;
+                start = end;
+                count++;
+            }
+        }
+        return graph;
+    }
 }
