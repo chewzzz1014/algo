@@ -7,8 +7,17 @@ public class DivideAndConquer extends ClosestPair {
 	
 	 // Divide-and-conquer approach
     public Point[] closestPair(Point[] points) {
+    	BruteForce bf = new BruteForce();
+    	
+    	 if (points.length <= 1) {
+    	        return new Point[2]; // Return an empty array if no or only one point is given
+    	 } else if (points.length <= 3) {
+    	        return bf.bruteForce(points);
+    	 }
+    	 
         // Sort points based on x-coordinate
         Arrays.sort(points, Comparator.comparingInt(p -> p.x));
+        
         int mid = points.length / 2;
         for(Point p: points)
         	System.out.println(p.toString());
@@ -21,6 +30,8 @@ public class DivideAndConquer extends ClosestPair {
 
         // Recursively find the closest pair in each half
         Point[] closestPairLeft = closestPair(leftPoints);
+        for(Point p: leftPoints)
+        	System.out.println("********* " + p.toString());
         Point[] closestPairRight = closestPair(rightPoints);
 
         // Determine the closer pair from the two halves
@@ -37,8 +48,11 @@ public class DivideAndConquer extends ClosestPair {
             }
         }
 
+        strip.sort(Comparator.comparingInt(p -> p.y));
+
         double stripDist = closestStrip(strip.toArray(new Point[0]), minDist);
         if (stripDist < minDist) {
+        	minDist = stripDist;
             closestPair = closestStripPair;
         }
 
