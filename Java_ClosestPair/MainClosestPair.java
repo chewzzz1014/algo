@@ -4,10 +4,11 @@ public class MainClosestPair {
 	public static void main (String[] args) {
 		DivideAndConquer dc = new DivideAndConquer();
 		BruteForce bf = new BruteForce();
+		final String FILE_NAME = "C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_ClosestPair\\points.txt";
 		
 		try {
-            // Read points from the text file
-            Point[] pointsArray = dc.readPointsFromFile("C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_ClosestPair\\points.txt");
+            (new Point()).writeRandmNPoints(FILE_NAME, 100);
+            Point[] pointsArray = dc.readPointsFromFile(FILE_NAME);
 
             // Perform the closest pair calculations using both approaches
             Point[] bruteForceClosestPair = bf.bruteForce(pointsArray);
