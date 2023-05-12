@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class DivideAndConquer extends ClosestPair {	
-	static Point[] closestStripPair;    
+	static Point[] closestStripPair = new Point[2];    
 	
 	 // Divide-and-conquer approach
     public Point[] closestPair(Point[] points) {
@@ -19,10 +19,7 @@ public class DivideAndConquer extends ClosestPair {
         Arrays.sort(points, Comparator.comparingInt(p -> p.x));
         
         int mid = points.length / 2;
-        for(Point p: points)
-        	System.out.println(p.toString());
         Point midPoint = points[mid];
-        System.out.println("*** "+midPoint.toString());
 
         // Divide the points into two halves
         Point[] leftPoints = Arrays.copyOfRange(points, 0, mid);
@@ -30,13 +27,20 @@ public class DivideAndConquer extends ClosestPair {
 
         // Recursively find the closest pair in each half
         Point[] closestPairLeft = closestPair(leftPoints);
-        for(Point p: leftPoints)
-        	System.out.println("********* " + p.toString());
         Point[] closestPairRight = closestPair(rightPoints);
 
         // Determine the closer pair from the two halves
-        double leftDist = distance(closestPairLeft[0], closestPairLeft[1]);
-        double rightDist = distance(closestPairRight[0], closestPairRight[1]);
+        
+        //double leftDist = distance(closestPairLeft[0], closestPairLeft[1]);
+        double leftDist = Double.MAX_VALUE;
+        if (closestPairLeft != null && closestPairLeft[0] != null && closestPairLeft[1] != null) {
+            leftDist = distance(closestPairLeft[0], closestPairLeft[1]);
+        }
+        double rightDist = Double.MAX_VALUE;
+        if (closestPairRight != null && closestPairRight[0] != null && closestPairRight[1] != null) {
+            rightDist = distance(closestPairRight[0], closestPairRight[1]);
+        }
+        
         double minDist = Math.min(leftDist, rightDist);
         Point[] closestPair = (minDist == leftDist) ? closestPairLeft : closestPairRight;
 
@@ -48,9 +52,8 @@ public class DivideAndConquer extends ClosestPair {
             }
         }
 
-        strip.sort(Comparator.comparingInt(p -> p.y));
-
         double stripDist = closestStrip(strip.toArray(new Point[0]), minDist);
+
         if (stripDist < minDist) {
         	minDist = stripDist;
             closestPair = closestStripPair;
@@ -69,10 +72,16 @@ public class DivideAndConquer extends ClosestPair {
         // Iterate over each point in the strip
         for (int i = 0; i < len; i++) {
             // Compare each point with the next 7 points in the strip
-            for (int j = i + 1; j < len && (strip[j].y - strip[i].y) < min; j++) {
+            //for (int j = i + 1; j < len && (strip[j].y - strip[i].y) < min; j++) {
+        	for (int j = i + 1; j < Math.min(i + 8, len); j++) {
                 double dist = distance(strip[i], strip[j]);
+                if (dist == 0) {
+                	continue;
+                }
                 if (dist < min) {
                     min = dist;
+                    closestStripPair[0] = strip[i];
+                    closestStripPair[1] = strip[j];
                 }
             }
         }

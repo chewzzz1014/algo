@@ -1,13 +1,19 @@
 import java.io.IOException;
+import java.util.Scanner;
 
 public class MainClosestPair {
 	public static void main (String[] args) {
 		DivideAndConquer dc = new DivideAndConquer();
 		BruteForce bf = new BruteForce();
 		final String FILE_NAME = "C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_ClosestPair\\points.txt";
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter number of points, N (suggested value: 10, 100, 1000): ");
+		int size = sc.nextInt();
+		System.out.println();
+		sc.close();
 		
 		try {
-            (new Point()).writeRandmNPoints(FILE_NAME, 100);
+            (new Point()).writeRandmNPoints(FILE_NAME, size);
             Point[] pointsArray = dc.readPointsFromFile(FILE_NAME);
 
             // Perform the closest pair calculations using both approaches

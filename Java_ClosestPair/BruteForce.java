@@ -9,9 +9,12 @@ public class BruteForce extends ClosestPair {
 	        double minDistance = Double.POSITIVE_INFINITY;
 	        Point[] closestPair = new Point[2];
 	        
-	        for (int i = 0; i < n; ++i) {
+	        for (int i = 0; i < n; i++) {
 	         for (int j = i + 1; j < n; ++j) {
-	              double dist = distance(points[i], points[j]);
+	        	 if (points[i].equals(points[j])) {
+	                    continue; // Skip calculating distance for the same points
+	             }
+	             double dist = distance(points[i], points[j]);
 	             if (dist < minDistance) {
 	                minDistance = dist;
 	                closestPair[0] = points[i];

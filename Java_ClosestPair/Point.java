@@ -19,6 +19,10 @@ public class Point {
 		 return "(" + this.x + ", " + this.y + ")";
 	 }
 	 
+	 public boolean equals(Point point2) {
+		 return x == point2.x && y == point2.y;
+	 }
+	 
 	 public void writeRandmNPoints(String file, int n) throws IOException {
 		 BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 
@@ -33,6 +37,6 @@ public class Point {
 	        }
 
 	        writer.close();
-	        System.out.println("Points written to file: " + file);
+	        System.out.println("Generated " + n + " points in 'points.txt'...\n");
 	 }
 }
