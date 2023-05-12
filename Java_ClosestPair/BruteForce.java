@@ -1,19 +1,27 @@
+// Chew Zi Qing 212360
 
+// brute force closest pair
 public class BruteForce extends ClosestPair {
 	public BruteForce() {
 		
 	}
 	
-	 public Point[] bruteForce(Point[] points) {
-	        int n = points.length;
-	        double minDistance = Double.POSITIVE_INFINITY;
-	        Point[] closestPair = new Point[2];
+	// implement the algo
+	public Point[] bruteForce(Point[] points) {
+	      int n = points.length;
+	      double minDistance = Double.POSITIVE_INFINITY;
+	      Point[] closestPair = new Point[2];
 	        
-	        for (int i = 0; i < n; i++) {
-	         for (int j = i + 1; j < n; ++j) {
+	      // nested looping for every point
+	      for (int i = 0; i < n; i++) {
+	    	  for (int j = i + 1; j < n; ++j) {
+	    		 
+	    		 // skip if 2 points are same
 	        	 if (points[i].equals(points[j])) {
-	                    continue; // Skip calculating distance for the same points
+	                  continue; 
 	             }
+	        	 
+	        	 // calculate the distance and compare with min distance
 	             double dist = distance(points[i], points[j]);
 	             if (dist < minDistance) {
 	                minDistance = dist;
