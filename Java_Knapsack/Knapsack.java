@@ -3,21 +3,23 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.FileWriter;
+import java.io.IOException;
 
-public class Knapsack {
+public class Knapsack{
 	int KNAPSACK_MAX_LIMIT;
 	
 	public Knapsack(int MAX) {
 		KNAPSACK_MAX_LIMIT = MAX;
 	}
 	
-	Item[] readItemsFromCSV(String filename) throws IOException {
+	ArrayList<Item> readItemsFromCSV(String filename) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filename));
         ArrayList<Item> itemsList = new ArrayList<>();
         String line;
 
         while ((line = reader.readLine()) != null) {
-            String[] coordinates = line.split(".");
+            String[] coordinates = line.split(",");
             String name = coordinates[0];
             int worth = Integer.parseInt(coordinates[1]);
             int weight = Integer.parseInt(coordinates[2]);
@@ -25,15 +27,25 @@ public class Knapsack {
         }
 
         reader.close();
-        return itemsList.toArray(new Item[0]);
+        return itemsList;
     }
 	
-	public static void printResult(List<Item> selectedItems) {
+	public void writeToFile(ArrayList<Item> result, String filePath) {
+        try (FileWriter writer = new FileWriter(filePath)) {
+        	writer.write("Item,Worth,Weight");
+        	for(Item item : result) {
+        		 writer.write(item.toString());
+        	}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	public void printResult(ArrayList<Item> selectedItems) {
         int totalWorth = 0;
         int totalWeight = 0;
 
         for (Item item : selectedItems) {
-            System.out.println(item.toString());
             totalWorth += item.worth;
             totalWeight += item.weight;
         }

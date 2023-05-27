@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Collections;
 
 public class DynamicKnapsack extends Knapsack {
@@ -7,7 +6,7 @@ public class DynamicKnapsack extends Knapsack {
 		super(n);
 	}
 	
-	public List<Item> solveKnapsack(List<Item> items) {
+	public ArrayList<Item> solveKnapsack(ArrayList<Item> items) {
         int[][] dp = new int[items.size() + 1][KNAPSACK_MAX_LIMIT + 1];
 
         for (int i = 1; i <= items.size(); i++) {
@@ -22,7 +21,7 @@ public class DynamicKnapsack extends Knapsack {
         }
 
         // Backtrack to find the selected items
-        List<Item> selectedItems = new ArrayList<>();
+        ArrayList<Item> selectedItems = new ArrayList<>();
         int i = items.size();
         int j = KNAPSACK_MAX_LIMIT;
         while (i > 0 && j > 0) {
