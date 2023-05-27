@@ -2,7 +2,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class DynamicKnapsack extends Knapsack {
-	public DynamicKnapsack(int n) {
+	
+	public DynamicKnapsack(int n){
 		super(n);
 	}
 	
@@ -34,7 +35,7 @@ public class DynamicKnapsack extends Knapsack {
 
         // Reverse the order to have the most important items first
         Collections.reverse(selectedItems);
-
+        
         return selectedItems;
     }
 }

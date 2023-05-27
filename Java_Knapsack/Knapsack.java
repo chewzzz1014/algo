@@ -2,9 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.io.FileWriter;
-import java.io.IOException;
 
 public class Knapsack{
 	int KNAPSACK_MAX_LIMIT;
@@ -33,9 +31,9 @@ public class Knapsack{
 	public void writeToFile(ArrayList<Item> result, String filePath) {
         try (FileWriter writer = new FileWriter(filePath)) {
         	writer.write("Item,Worth,Weight\n");
-        	for(Item item : result) {
-        		 writer.write(item.toString());
-        	}
+        	for (Item item: result) {
+                writer.write(item.toString());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,4 +51,5 @@ public class Knapsack{
         System.out.println("Total Worth: " + totalWorth);
         System.out.println("Total Weight: " + totalWeight);
     }
+	
 }
