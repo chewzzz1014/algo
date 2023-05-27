@@ -16,6 +16,8 @@ public class MainKnapsack {
 	        gk.printResult(result1);
 	        gk.writeToFile(result1, FILE_PATH_BASE + "\\greedy_results.csv");
 	        
+	        System.out.println();
+	        
 	        // dynamic programming
 		 	DynamicKnapsack dk = new DynamicKnapsack(AIRLINE_LIMIT);
 	        ArrayList<Item> result2 = dk.solveKnapsack(items);

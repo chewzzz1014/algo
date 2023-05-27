@@ -32,7 +32,7 @@ public class Knapsack{
 	
 	public void writeToFile(ArrayList<Item> result, String filePath) {
         try (FileWriter writer = new FileWriter(filePath)) {
-        	writer.write("Item,Worth,Weight");
+        	writer.write("Item,Worth,Weight\n");
         	for(Item item : result) {
         		 writer.write(item.toString());
         	}
