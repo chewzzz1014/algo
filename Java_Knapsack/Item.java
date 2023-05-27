@@ -1,15 +1,15 @@
 
 public class Item {
 	String name;
-	int value, weight;
+	int worth, weight;
 	
-	public Item(String n, int v, int w) {
+	public Item(String n, int worth, int weight) {
 		name = n;
-		value = v;
-		weight = w;
+		this.worth = worth;
+		this.weight = weight;
 	}
 	
 	public String toString() {
-		return name + " - Worth: " + value + ", Weight: " + weight;
+		return name + ";Worth: " + worth + ";Weight: " + weight + "g.";
 	}
 }
