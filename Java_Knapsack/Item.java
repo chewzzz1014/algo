@@ -10,6 +10,6 @@ public class Item {
 	}
 	
 	public String toString() {
-		return name + "." + worth + "." + weight + "\n";
+		return name + "," + worth + "," + weight + "\n";
 	}
 }
