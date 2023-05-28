@@ -1,10 +1,10 @@
-
+// Chew Zi Qing 212360
 public class Item {
 	String name;
 	int worth, weight;
 	
-	public Item(String n, int worth, int weight) {
-		name = n;
+	public Item(String name, int worth, int weight) {
+		this.name = name;
 		this.worth = worth;
 		this.weight = weight;
 	}
