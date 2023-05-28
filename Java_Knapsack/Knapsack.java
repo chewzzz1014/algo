@@ -11,6 +11,7 @@ public class Knapsack{
 		KNAPSACK_MAX_LIMIT = MAX;
 	}
 	
+	// read list of items from items.csv
 	ArrayList<Item> readItemsFromCSV(String filename) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filename));
         ArrayList<Item> itemsList = new ArrayList<>();
@@ -28,6 +29,7 @@ public class Knapsack{
         return itemsList;
     }
 	
+	// write list of items into new csv
 	public void writeToFile(ArrayList<Item> result, String filePath) {
         try (FileWriter writer = new FileWriter(filePath)) {
         	writer.write("Item,Worth,Weight\n");
@@ -51,5 +53,10 @@ public class Knapsack{
         System.out.println("Total Worth: " + totalWorth);
         System.out.println("Total Weight: " + totalWeight);
     }
+	
+	// calc execution time in ms
+	public long calcExecutionTime(long start, long end) {
+		return (end - start) / 1_000_000;
+	}
 	
 }

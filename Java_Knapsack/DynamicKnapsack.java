@@ -32,7 +32,7 @@ public class DynamicKnapsack extends Knapsack {
             }
             i--;
         }
-
+        
         // Reverse the order to have the most important items first
         Collections.reverse(selectedItems);
         
