@@ -6,7 +6,7 @@ import java.io.IOException;
 public class MainKnapsack {
 	public static void main (String [] args) throws IOException{
 			// define airline weight limit
-			final int AIRLINE_LIMIT = 7000;
+			final int AIRLINE_LIMIT = 4000;
 			final String FILE_PATH_BASE = "C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_Knapsack";
 			
 			// read list of items from items.csv
