@@ -4,7 +4,7 @@
 class BinarySearchTree<T>{
   final static String FILEPATH = "C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software.txt";
   final static String FILEPATH_TEMP = "C:\\Users\\USER\\eclipse-workspace\\Algo_DS\\Java_BST\\Software_tmp.txt";
-  BSTNode<T> root;
+  BinarySearchTreeNode<T> root;
 
   // start with empty BST
   BinarySearchTree() {
@@ -16,10 +16,10 @@ class BinarySearchTree<T>{
     root = insertKey(root, key, pos);
   }
 
-  BSTNode<T> insertKey(BSTNode<T> root, T target, int pos) {
+  BinarySearchTreeNode<T> insertKey(BinarySearchTreeNode<T> root, T target, int pos) {
     // Return a new node if the tree is empty
     if (root == null) {
-      root = new BSTNode<T>(target, pos);
+      root = new BinarySearchTreeNode<T>(target, pos);
       return root;
     }
 
@@ -44,7 +44,7 @@ class BinarySearchTree<T>{
     inorderRec(root);
   }
 
-  void inorderRec(BSTNode<T> root) {
+  void inorderRec(BinarySearchTreeNode<T> root) {
     if (root != null) {
       inorderRec(root.left);
       System.out.print(root.key + " -> ");
@@ -57,7 +57,7 @@ class BinarySearchTree<T>{
     root = deleteRec(root, target);
   }
 
-  BSTNode<T> deleteRec(BSTNode<T> root, T target) {
+  BinarySearchTreeNode<T> deleteRec(BinarySearchTreeNode<T> root, T target) {
     // if tree is empty
     if (root == null)
       return root;
@@ -77,7 +77,7 @@ class BinarySearchTree<T>{
       else if (root.right == null)
         return root.left;
       else {
-    	  BSTNode<T> nodeSucc = findMin(root.right);
+    	  BinarySearchTreeNode<T> nodeSucc = findMin(root.right);
           root.data = nodeSucc.data;
           root.key = nodeSucc.key;
       }
@@ -86,7 +86,7 @@ class BinarySearchTree<T>{
   }
 
   // Find the inorder successor
-  BSTNode<T> findMin(BSTNode<T> node){
+  BinarySearchTreeNode<T> findMin(BinarySearchTreeNode<T> node){
 	  while (node.left != null) {
 		  node = node.left;
 	  }
@@ -94,17 +94,17 @@ class BinarySearchTree<T>{
   }
   
   // search node given a Software object
-  public BSTNode<T> search(T target) {
+  public BinarySearchTreeNode<T> search(T target) {
 	 return searchRec(root, target);
   }
   
   // Overloading method
   // search node given Software name
-  public BSTNode<T> search(String name) {
+  public BinarySearchTreeNode<T> search(String name) {
 		 return searchRec(root, name);
   }
   
-  public BSTNode<T> searchRec(BSTNode<T> root, T target)
+  public BinarySearchTreeNode<T> searchRec(BinarySearchTreeNode<T> root, T target)
   {
       if (root==null || root.key.equals(((Software)(target)).key))
           return root;
@@ -121,7 +121,7 @@ class BinarySearchTree<T>{
   
   // overloading method
   // search node given Software name
-  public BSTNode<T> searchRec(BSTNode<T> root, String name)
+  public BinarySearchTreeNode<T> searchRec(BinarySearchTreeNode<T> root, String name)
   {
       if (root==null)
           return null;
@@ -139,7 +139,7 @@ class BinarySearchTree<T>{
 	    printInventory(root);
   }
   // print all node in BST
-  private void printInventory(BSTNode<T> node) {
+  private void printInventory(BinarySearchTreeNode<T> node) {
 	    if (node == null) {
 	      return;
 	    }
