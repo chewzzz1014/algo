@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+            }
+            textarea {
+                overflow-y:scroll;
+                height:30px;
+                resize: none;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .centered-text {
+                text-align: center;
+            }
+            .bold-text {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <table>
+            <form>
+                <tr>
+                    <td colspan="2" class="centered-text bold-text">Product data</td>
+                </tr>
+                <tr>
+                    <td width="300px">
+                        <div class="centered-text">Description</div>
+                        <textarea cols="20" rows="5" placeholder="Details" name="description"></textarea>
+                    </td>
+                    <td width="180px">
+                        <div>Supported media files</div>
+                        <div>
+                            <input type="checkbox" id="mp3" name="media-files" value="mp3">
+                            <label for="mp3">mp3</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="jpg" name="media-files" value="jpg" checked>
+                            <label for="jpg">jpg</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="avi" name="media-files" value="avi">
+                            <label for="avi">avi</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="centered-text">
+                        <button>Button</button>
+                    </td>
+                </tr>
+            </form>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <style>
+            .container {
+                width: 100px;
+                border: 1px solid black;
+            }
+            #change-txt-btn {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div id="text-container">Welcome</div>
+            <button id="change-txt-btn">Change text</button>
+        </div>
+        <script>
+            const changeTextBtn = document.querySelector("#change-txt-btn");
+            const textContainer = document.querySelector("#text-container");
+            
+            changeTextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                textContainer.textContent = 'Goodbye';
+            })
+        </script>
+    </body>
+</html>
