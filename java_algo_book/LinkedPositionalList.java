@@ -1,6 +1,56 @@
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class LinkedPositionalList<T> implements PositionalList<T> {
     
-    // nested class
+    // nested class: position iterator
+    private class PositionIterator implements Iterator<Position<T>> {
+        private Position<T> cursor = first(); // outer class method
+        private Position<T> recent = null;
+
+        public boolean hasNext() {
+            return (cursor != null);
+        }
+        public Position<T> next() throws NoSuchElementException {
+            if(cursor == null)
+                throw new NoSuchElementException("nothing left");
+            recent = cursor;
+            cursor = after(recent);
+            return recent;
+        }
+        public void remove() throws IllegalStateException {
+            if(recent == null)
+                throw new IllegalStateException("nothing to remove");
+            LinkedPositionalList.this.remove(recent);
+            recent = null;
+        }
+    }
+    // end of nested class: position iterator
+
+    // nested class: position iterable
+    private class PositionIterable implements Iterable<Position<T>> {
+        public Iterator<Position<T>> iterator() {
+            return new PositionIterator();
+        }
+    }
+    // end of nested class: position iterable
+
+    // nested class: element iterator
+    private class ElementIterator implements Iterator<T> {
+        Iterator<Position<T>> postIterator = new PositionIterator();
+        public boolean hasNext() {
+            return postIterator.hasNext();
+        }
+        public T next() {
+            return postIterator.next().getElement();
+        }
+        public void remove() {
+            postIterator.remove();
+        }
+    }
+    // end of nested class: element iterator
+
+    // nested class: position node
     private static class Node<T> implements Position<T> {
         private T element;
         private Node<T> prev;
@@ -30,6 +80,7 @@ public class LinkedPositionalList<T> implements PositionalList<T> {
             next = n;
         }
     }
+    // end of nested class: position node
 
     private Node<T> header;
     private Node<T> trailer;
@@ -39,6 +90,16 @@ public class LinkedPositionalList<T> implements PositionalList<T> {
         header = new Node<>(null, null, null);
         trailer = new Node<>(null, header, null);
         header.setNext(trailer);
+    }
+
+    // return iterable representation of list's position
+    public Iterable<Position<T>> positions() {
+        return new PositionIterable();
+    }
+
+    // return iterator of elements in list
+    public Iterator<T> iterator() {
+        return new ElementIterator();
     }
 
     private Node<T> validate(Position<T> p) throws IllegalArgumentException {

@@ -1,5 +1,36 @@
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class ArrayList<T> implements List<T> {
     
+
+    // nested class
+    private class ArrayIterator implements Iterator<T> {
+        private int i = 0; // index of next element to report
+        private boolean removable = false;
+
+        public boolean hasNext() {
+            return i < size; // size is field from outer instance
+        }
+
+        public T next() throws NoSuchElementException {
+            if(i == size)
+                throw new NoSuchElementException("No next element");
+            removable = true; // this element can subsequently be removed
+            return data[i++];
+        }
+
+        public void remove() throws IllegalStateException {
+            if(!removable)
+                throw new IllegalStateException("nothing to remove");
+            ArrayList.this.remove(i-1);
+            i--;
+            removable = false;
+        }
+    }
+    // end of nested class
+
+
     public static final int CAPACITY = 16;
     private T[] data;
     private int size = 0;
@@ -10,6 +41,10 @@ public class ArrayList<T> implements List<T> {
 
     public ArrayList(int capacity) {
         data = (T[]) new Object[capacity];
+    }
+
+    public Iterator<T> iterator() {
+        return new ArrayIterator();
     }
 
     public int size() {
