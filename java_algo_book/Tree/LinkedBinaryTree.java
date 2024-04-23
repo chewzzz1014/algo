@@ -142,6 +142,7 @@ public class LinkedBinaryTree<T> extends AbstractBinaryTree<T> {
         }
     }
 
+    // remove node at position p and replaces it with its child (if any)
     public T remove(Position<T> p) throws IllegalArgumentException {
         Node<T> node = validate(p);
         if(numChildren(p) == 2)
@@ -149,7 +150,23 @@ public class LinkedBinaryTree<T> extends AbstractBinaryTree<T> {
         Node<T> child = (node.getLeft() != null ? node.getLeft() : node.getRight());
         if(child != null)
             child.setParent(node.getParent());
-        if()
+        if(node == root)
+            root = child;
+        else {
+            Node<T> parent = node.getParent();
+            if(node == parent.getLeft())
+                parent.setLeft(child);
+            else
+                parent.setRight(child);
+        }
+        size--;
+        T temp = node.getElement();
+        // for garbage collection
+        node.setElement(null);
+        node.setLeft(null);
+        node.setRight(null);
+        node.setParent(node);
+        return temp;
     }
 }
 
