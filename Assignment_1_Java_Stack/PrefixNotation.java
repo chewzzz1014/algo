@@ -2,6 +2,9 @@
 // Matric Number: 212360
 //Objective: Evaluate Lisp Expression (prefix notation) using stack in Java.
 import java.util.Scanner;
+
+import List.ArrayStack;
+
 import java.util.ArrayList;
 
 // application of prefix notation evaluation using ArrayStack

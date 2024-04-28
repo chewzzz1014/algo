@@ -1,4 +1,5 @@
-import java_algo_book.SinglyLinkedList;
+package Queue;
+import List.SinglyLinkedList;
 
 public class LinkedQueue<T> implements Queue<T> {
     

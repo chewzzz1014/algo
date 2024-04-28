@@ -1,3 +1,4 @@
+package Stack;
 public class MatchingParentheses {
     
     public static boolean isMatched(String expression) {

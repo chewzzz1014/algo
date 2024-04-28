@@ -1,3 +1,7 @@
+package List;
+import Stack.Stack;
+
+
 public class ArrayStack<T> implements Stack<T> {
 
     public static final int CAPACITY = 1000;

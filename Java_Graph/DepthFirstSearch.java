@@ -1,5 +1,8 @@
 import java.util.*;
 
+import List.ArrayList;
+import List.List;
+
 public class DepthFirstSearch {
 	 public static List<Integer> dfs(RandomGraph rg, int start, int end) {
 	        boolean[] visited = new boolean[rg.numVertices];

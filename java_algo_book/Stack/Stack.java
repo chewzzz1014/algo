@@ -1,3 +1,4 @@
+package Stack;
 public interface Stack<T> {
     
     int size();

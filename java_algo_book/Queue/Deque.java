@@ -1,3 +1,4 @@
+package Queue;
 public interface Deque<T> {
     
     int size();

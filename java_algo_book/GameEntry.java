@@ -1,5 +1,3 @@
-package java_algo_book;
-
 public class GameEntry {
     private String name;
     private int score;

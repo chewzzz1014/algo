@@ -2,7 +2,7 @@ public class EnglishRuler {
     
     public static void drawRuler(int nInches, int majorLength) {
         drawLine(majorLength, 0);
-        for(int i=1; i<nInches, i++) {
+        for(int i=1; i<nInches; i++) {
             drawInterval(majorLength-1);
             drawLine(majorLength, i);
         }

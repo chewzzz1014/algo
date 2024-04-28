@@ -1,5 +1,8 @@
 import java.util.*;
 
+import List.ArrayList;
+import List.List;
+
 public class AStarSearch {
     
     private static final int N = 5; // number of nodes

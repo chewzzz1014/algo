@@ -1,4 +1,4 @@
-package java_algo_book;
+package List;
 
 public class CircularlyLinkedList<T> {
 

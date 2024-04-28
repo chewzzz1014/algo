@@ -1,5 +1,3 @@
-package java_algo_book;
-
 public class CaesarCipher {
 
     protected char[] encoder = new char[26];

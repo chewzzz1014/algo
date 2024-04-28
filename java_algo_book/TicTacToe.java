@@ -1,5 +1,3 @@
-package java_algo_book;
-
 public class TicTacToe {
 
     private static final int X = 1, O = -1;

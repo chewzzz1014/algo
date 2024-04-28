@@ -1,4 +1,5 @@
-import java_algo_book.SinglyLinkedList;
+package Stack;
+import List.SinglyLinkedList;
 
 public class LinkedStack<T> implements Stack<T> {
     

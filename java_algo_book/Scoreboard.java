@@ -1,5 +1,3 @@
-package java_algo_book;
-
 import java.lang.reflect.InaccessibleObjectException;
 
 // sorted list of score

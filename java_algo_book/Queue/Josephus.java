@@ -1,3 +1,4 @@
+package Queue;
 public class Josephus {
     public static<T> T josephusWinner(CircularQueue<T> queue, int k) {
         if(queue.isEmpty()) return null;

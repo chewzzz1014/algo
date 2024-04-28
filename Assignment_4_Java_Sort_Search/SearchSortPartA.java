@@ -4,6 +4,8 @@
 import java.io.*;
 import java.util.*;
 
+import List.ArrayList;
+
 // display a list in alphabetical order of the unique Java keywords used in the input.txt
 public class SearchSortPartA {
 	public static void main (String[]args) throws IOException{

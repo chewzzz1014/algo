@@ -1,3 +1,4 @@
+package Queue;
 public interface Queue<T> {
     
     int size();

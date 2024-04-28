@@ -1,3 +1,4 @@
+import Queue.Queue;
 
 public class ArrayQueue implements Queue {
 	private Object[] objQ;

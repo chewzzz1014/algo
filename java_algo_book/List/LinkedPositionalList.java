@@ -1,3 +1,4 @@
+package List;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -143,7 +144,7 @@ public class LinkedPositionalList<T> implements PositionalList<T> {
     }
 
     private Position<T> addBetween(T ele, Node<T> pred, Node<T> succ) {
-        Node<T> newNode = new Node<>(e, pred, succ);
+        Node<T> newNode = new Node<>(ele, pred, succ);
         pred.setNext(newNode);
         succ.setPrev(newNode);
         size++;

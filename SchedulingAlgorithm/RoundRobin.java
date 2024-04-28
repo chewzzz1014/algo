@@ -1,6 +1,8 @@
 // Chew Zi Qing 212360
 
 import java.util.Scanner;
+
+import Queue.Queue;
 public class RoundRobin {
 	
 	public static void main (String[]args) {

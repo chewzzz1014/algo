@@ -1,5 +1,4 @@
-package java_algo_book;
-
+package Queue;
 public class Node<T> {
     
     private T element;

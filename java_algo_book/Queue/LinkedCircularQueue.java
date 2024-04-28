@@ -1,4 +1,4 @@
-import java_algo_book.CircularlyLinkedList;
+package Queue;
 
 public class LinkedCircularQueue<T> implements CircularQueue<T>{
     

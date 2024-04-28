@@ -4,6 +4,9 @@
 // generic linked list
 // methods: getData, addFirst, addLast, add, removeFirst,
 // removeLast, remove, toString, indexOf
+
+import List.Node;
+
 public class LinkedList <T> {
 	Node<T> first, last;
 	int size = 0;

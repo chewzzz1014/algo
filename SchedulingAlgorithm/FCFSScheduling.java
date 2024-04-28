@@ -1,6 +1,9 @@
 // Chew Zi Qing 212360
 
 // implementing First Come First Serve scheduling algorithm
+
+import Queue.Queue;
+
 public class FCFSScheduling {
 	public static void main (String[]args) {
 		

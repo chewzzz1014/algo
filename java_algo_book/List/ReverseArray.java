@@ -1,10 +1,10 @@
+package List;
 import java.util.Stack;
-import java_algo_book.ArrayStack;
 
 public class ReverseArray {
     
 
-    public static void reverseArray1(int[] data, int low, int high) {
+    public static void reverseArray(int[] data, int low, int high) {
         if(low < high) {
             int temp = data[low];
             data[low] = data[high];
