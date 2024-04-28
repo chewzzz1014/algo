@@ -1,5 +1,7 @@
 package Tree;
 
+import List.Position;
+
 public interface BinaryTree<T> extends Tree<T> {
     
     Position<T> left(Position<T> p) throws IllegalArgumentException;

@@ -1,8 +1,11 @@
 package Tree;
 
-import java.util.*;
-import Tree.Position;
-import java_algo_book.LinkedQueue;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
+import List.Position;
+import Queue.Queue;
+import Queue.LinkedQueue;
 
 public abstract class AbstractTree<T> implements Tree<T> {
 
@@ -57,11 +60,17 @@ public abstract class AbstractTree<T> implements Tree<T> {
     }
 
     // bread-first traversal
-    public Iterable<Position<T>> breadFirst() {
+    public Iterable<Position<T>> breadthFirst() {
         List<Position<T>> snapshot = new ArrayList<>();
         if(!isEmpty()) {
-            Queue<Position<T>> fringe = new <>();
-
+            Queue<Position<T>> fringe = new LinkedQueue <>();
+            fringe.enqueue(root());
+            while(!fringe.isEmpty()) {
+                Position<T> p = fringe.dequeue();
+                snapshot.add(p);
+                for(Position<T> c : children(p))
+                    fringe.enqueue(c);
+            }
         }
         return snapshot;
     }
