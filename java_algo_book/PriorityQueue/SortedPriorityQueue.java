@@ -38,5 +38,8 @@ public class SortedPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
         if(list.isEmpty()) return null;
         return list.remove(list.first());
     }
+    public int size() {
+        return list.size();
+    }
     
 }
