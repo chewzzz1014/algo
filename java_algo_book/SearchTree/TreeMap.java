@@ -159,7 +159,14 @@ public class TreeMap<K,V> extends AbstractSortedMap<K,V> {
     private void subMapRecurse(K fromKey, K toKey, Position<Entry<K,V>> p, ArrayList<Entry<K,V>> buffer) {
         if(tree.isInternal(p)) {
             if(compare(p.getElement(), fromKey) < 0)
-
+                subMapRecurse(fromKey, toKey, tree.right(p), buffer);
+            else {
+                subMapRecurse(fromKey, toKey, tree.left(p), buffer);
+                if(compare(p.getElement(), toKey) < 0) {
+                    buffer.add(p.getElement());
+                    subMapRecurse(fromKey, toKey, tree.right(p), buffer);
+                }
+            }
         }
     }
 }
