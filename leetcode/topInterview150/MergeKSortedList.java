@@ -1,5 +1,7 @@
 package topInterview150;
 
+import java.util.PriorityQueue;
+
 public class MergeKSortedList {
     
     public ListNode mergeKLists(ListNode[] lists) {
