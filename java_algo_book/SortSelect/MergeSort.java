@@ -1,5 +1,8 @@
 package SortSelect;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class MergeSort<K> {
     
     public static <K> void mergeSort(K[] S, Comparator<K> comparator) {
@@ -13,7 +16,7 @@ public class MergeSort<K> {
         mergeSort(S1, comparator);
         mergeSort(S2, comparator);
 
-        mergeSort(S1, S2, S, comparator);
+        merge(S1, S2, S, comparator);
     }
 
     public static <K> void merge(K[] S1, K[] S2, K[] S, Comparator<K> comparator) {
