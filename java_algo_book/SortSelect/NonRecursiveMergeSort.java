@@ -20,4 +20,20 @@ public class NonRecursiveMergeSort<K> {
         if(x<end1) System.arraycopy(in, x, out, z, end1 - x);
         else if(y<end2) System.arraycopy(in, y, out, z, end2 - y);
     }
+
+    public static <K> void mergeSortBottomUp(K[] orig, Comparator<K> comparator) {
+        int n = orig.length;
+        K[] src = orig;
+        K[] dest = (K[]) new Object[n];
+        K[] temp;
+        for(int i = 1; i<n; i*=2) {
+            for(int j=0; j<n; j+=2*i)
+                merge(src, dest, comparator, j, i);
+            temp = src;
+            src = dest;
+            dest = temp;
+        }
+        if(orig != src)
+            System.arraycopy(src, 0, orig, 0, n);
+    }
 }
